@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LitBro</string>
+    <string name="loginText">Login :</string>
+    <string name="loginHint">Entrz votre nom d\'utilisateur </string>
+    <string name="passwordText">Mot de passe :</string>
+    <string name="passwordHint">Votre mot de passe </string>
+    <string name="buttonConnexion">Se connecter </string>
+    <string name="userInexistant">Cet utilisateur n\'existe pas</string>
+    <string name="bddEchec">Verifiez votre connexion</string>
+    <string name="mdpIncorrecte">Mot de passe incorrecte</string>
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "521274251948",
+    "firebase_url": "https://litbro-90004.firebaseio.com",
+    "project_id": "litbro-90004",
+    "storage_bucket": "litbro-90004.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521274251948:android:7c7b946b93ada7ebff9d09",
+        "android_client_info": {
+          "package_name": "com.LilBro.LitBro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521274251948-53pdut7o1a5d3ft97q8bo2i8qrjk2gdb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.LilBro.LitBro",
+            "certificate_hash": "48835a6d4169670fe55e9d28b57db4dfdfafb96a"
+          }
+        },
+        {
+          "client_id": "521274251948-iqndmi21pdqimkgmriijemu9788g2msn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2w-HP7am4f6fxgKQwwsxLQoa8U6AhpLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521274251948-iqndmi21pdqimkgmriijemu9788g2msn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
