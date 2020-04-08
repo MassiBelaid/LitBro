@@ -8,4 +8,10 @@
     <string name="userInexistant">Cet utilisateur n\'existe pas</string>
     <string name="bddEchec">Verifiez votre connexion</string>
     <string name="mdpIncorrecte">Mot de passe incorrecte</string>
+
+    <string name="itemParametre">paramètre </string>
+    <string name="bottom_navigation_titre2">titre2</string>
+    <string name="bottom_navigation_titre3">titre3</string>
+
+
 </resources>

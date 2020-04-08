@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item2"
+        android:enabled="true"
+        android:title="@string/bottom_navigation_titre2"
+        android:icon="@drawable/my_icon"
+        />
+    <item
+        android:id="@+id/item3"
+        android:enabled="true"
+        android:title="@string/bottom_navigation_titre3"
+        android:icon="@drawable/my_icon"
+        />
+    <item
+        android:id="@+id/itemParametre"
+        android:enabled="true"
+        android:title="@string/itemParametre"
+        android:icon="@drawable/my_icon"
+        />
+
+</menu>
