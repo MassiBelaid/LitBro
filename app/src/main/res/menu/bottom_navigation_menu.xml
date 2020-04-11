@@ -2,22 +2,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/item2"
+        android:id="@+id/itemMaps"
         android:enabled="true"
-        android:title="@string/bottom_navigation_titre2"
-        android:icon="@drawable/my_icon"
+        android:icon="@drawable/map"
+        android:title="@string/itemMaps"
         />
+
     <item
-        android:id="@+id/item3"
+        android:id="@+id/itemIndex"
         android:enabled="true"
-        android:title="@string/bottom_navigation_titre3"
-        android:icon="@drawable/my_icon"
+        android:title="@string/itemLocaux"
+        android:icon="@drawable/local"
         />
+
+    <item
+        android:id="@+id/itemAlert"
+        android:enabled="true"
+        android:title="@string/itemAlert"
+        android:icon="@drawable/alert"
+        />
+
     <item
         android:id="@+id/itemParametre"
         android:enabled="true"
         android:title="@string/itemParametre"
-        android:icon="@drawable/my_icon"
+        android:icon="@drawable/settings"
         />
+
+
+
 
 </menu>

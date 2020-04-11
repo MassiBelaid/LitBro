@@ -1,17 +1,22 @@
 <resources>
-    <string name="app_name">LitBro</string>
-    <string name="loginText">Login :</string>
-    <string name="loginHint">Entrz votre nom d\'utilisateur </string>
+    <string name="app_name" translatable="false">Lil\'Bro</string>
+    <string name="loginText">Utilisateur :</string>
+    <string name="loginHint">Entrez votre nom d\'utilisateur </string>
     <string name="passwordText">Mot de passe :</string>
-    <string name="passwordHint">Votre mot de passe </string>
-    <string name="buttonConnexion">Se connecter </string>
+    <string name="passwordHint">Entrez votre mot de passe</string>
+    <string name="buttonConnexion">Connexion</string>
     <string name="userInexistant">Cet utilisateur n\'existe pas</string>
     <string name="bddEchec">Verifiez votre connexion</string>
-    <string name="mdpIncorrecte">Mot de passe incorrecte</string>
+    <string name="mdpIncorrect">Mot de passe incorrect</string>
 
-    <string name="itemParametre">paramètre </string>
-    <string name="bottom_navigation_titre2">titre2</string>
-    <string name="bottom_navigation_titre3">titre3</string>
+    <string name="itemParametre">Paramètres</string>
+    <string name="itemMaps">Carte</string>
+    <string name="itemLocaux">Locaux</string>
+    <string name="itemAlert">Alertes</string>
+    <string name="logolilbro">LogoLilBro</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

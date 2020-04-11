@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loginText">User :</string>
+    <string name="loginHint">Enter your user name</string>
+    <string name="passwordText">Password :</string>
+    <string name="passwordHint">Enter your password</string>
+    <string name="buttonConnexion">Connection</string>
+    <string name="userInexistant">This user doesn\'t exist</string>
+    <string name="bddEchec">Check your connnection</string>
+    <string name="mdpIncorrect">Wrong password</string>
+    <string name="itemParametre">Settings</string>
+    <string name="itemMaps">Maps</string>
+    <string name="itemLocaux">Locals</string>
+    <string name="itemAlert">Alerts</string>
+    <string name="logolilbro">LogoLilBro</string>
+</resources>

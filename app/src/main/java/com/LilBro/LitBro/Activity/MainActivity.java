@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.LilBro.LitBro.Fragment.AlertFragment;
 import com.LilBro.LitBro.Fragment.MainFragment;
+import com.LilBro.LitBro.Fragment.MapFragment;
 import com.LilBro.LitBro.Fragment.ParametreFragment;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
@@ -41,12 +43,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.itemParametre:
                 mainFragment = new ParametreFragment();
                 break;
-            case R.id.item2 :
+            case R.id.itemIndex :
                 mainFragment = new MainFragment(this.description);
                 break;
-            case R.id.item3 :
-                mainFragment = new MainFragment(this.description);
+            case R.id.itemMaps :
+                mainFragment = new MapFragment();
                 break;
+            case R.id.itemAlert :
+                mainFragment = new AlertFragment();
+                break;
+            default:
+                mainFragment = new MainFragment(this.description);
 
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).commit();

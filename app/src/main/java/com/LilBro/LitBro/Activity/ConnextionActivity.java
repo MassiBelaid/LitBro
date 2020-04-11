@@ -60,7 +60,7 @@ public class ConnextionActivity extends AppCompatActivity {
                                     i.putExtra("utilisateur",user);
                                     startActivity(i);
                                 }else{
-                                    Toast.makeText(ConnextionActivity.this,R.string.mdpIncorrecte, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ConnextionActivity.this,R.string.mdpIncorrect, Toast.LENGTH_LONG).show();
                                 }
                             }else{
                                 Toast.makeText(ConnextionActivity.this,R.string.userInexistant, Toast.LENGTH_LONG).show();

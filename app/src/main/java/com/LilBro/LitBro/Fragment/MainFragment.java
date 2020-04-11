@@ -29,7 +29,7 @@ public class MainFragment extends Fragment {
         this.textDescription = (TextView) view.findViewById(R.id.textDescription);
         this.textDescription.setText(this.description);
 
-        // Inflate the layout for this fragment
         return view;
+
     }
 }
