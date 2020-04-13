@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Utilisateur implements Serializable {
+    public static final String LOGIN = "login";
+    public static final String MOTDEPASSE = "motDePasse";
+    public static final String UTILISATEURTYPE = "utilisateurType";
+    public static final String DATEDERNIERCHANGEMENT = "dateDernierChangement";
+    public static final String MODIFLOGIN = "modifLogin";
+
     private String login;
     private String motDePasse;
     private String utilisateurType;

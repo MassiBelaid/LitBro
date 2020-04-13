@@ -3,4 +3,5 @@
     <color name="colorYellowGold">#FFC82D</color>
     <color name="colorFullBlack">#000000</color>
     <color name="colorFullWhite">#FFFFFF</color>
+    <color name="colorRedError">#fc2e27</color>
 </resources>

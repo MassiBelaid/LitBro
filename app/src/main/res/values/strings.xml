@@ -15,6 +15,22 @@
     <string name="itemAlert">Alertes</string>
     <string name="logolilbro">LogoLilBro</string>
 
+    <string name="bGenererCompte">Générer un compte utilisateur</string>
+    <string name="titeGenererCompte">Enregistrer cet utilisateur ?</string>
+    <string name="titeGenererComptePositif">Confirmer</string>
+    <string name="titeGenererCompteNegatif">Annuler</string>
+    <string name="GenererCompteNegatif">Utilisateur non enregistré</string>
+    <string name="GenererCompteSucce">Utilisateur ajouté</string>
+    <string name="GenererCompteFail">Impossible d\'ajouter pour le moment</string>
+    <string name="modifLoginHint">Nouveau nom d\'utilisateur </string>
+    <string name="modifPasswordHint">Nouveau mot de passe</string>
+    <string name="modifPasswordHint2">Confirmez votre le mot de passe</string>
+    <string name="buttonModifer">Modifier</string>
+    <string name="motDePasseDifferents">Les deux mots de passe sont différents</string>
+    <string name="motDePassecourt">Veuillez saisir un mot de passe contenant au moins 6 caractéres</string>
+    <string name="modifCompteChampsIncomplet">Veuillez remplir tout les champs d\'abord</string>
+    <string name="modifComptePseudExistant">pseudo déja pris</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

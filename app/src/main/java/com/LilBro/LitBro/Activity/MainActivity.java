@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.LilBro.LitBro.Fragment.AlertFragment;
 import com.LilBro.LitBro.Fragment.MainFragment;
 import com.LilBro.LitBro.Fragment.MapFragment;
+import com.LilBro.LitBro.Fragment.ModifierLoginFragment;
 import com.LilBro.LitBro.Fragment.ParametreFragment;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String description ;
     private Fragment mainFragment;
     private ParametreFragment parametreFragment;
+    Utilisateur user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +30,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.activity_main_bottom_navigation);
 
         Intent i = getIntent();
-        Utilisateur user = (Utilisateur) i.getSerializableExtra("utilisateur");
+        user = (Utilisateur) i.getSerializableExtra("utilisateur");
         description = "User : "+user.getLogin()+" Type de compte "+user.getUtilisateurType();
-        configureAndShowMainFragment();
+        if(user.getModifLogin()){
+            configureAndShowMainFragment(new MainFragment(this.description));
+        }else{
+            configureAndShowMainFragment(new ModifierLoginFragment(user));
+        }
         configureBottomView();
     }
 
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean updateMainFragment(Integer integer){
         switch (integer){
             case R.id.itemParametre:
-                mainFragment = new ParametreFragment();
+                mainFragment = new ParametreFragment(this.user);
                 break;
             case R.id.itemIndex :
                 mainFragment = new MainFragment(this.description);
@@ -60,11 +66,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void configureAndShowMainFragment(){
-        mainFragment = (MainFragment)getSupportFragmentManager().findFragmentById(R.id.frame_layout_main);
-        //if (mainFragment == null){
-            mainFragment = new MainFragment(this.description);
-            getSupportFragmentManager().beginTransaction().add(R.id.frame_layout_main,mainFragment).commit();
-        //}
+    private void configureAndShowMainFragment(Fragment mainFragment){
+
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout_main,mainFragment).commit();
+
     }
 }
