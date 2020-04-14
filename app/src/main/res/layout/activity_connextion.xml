@@ -61,7 +61,8 @@
         android:inputType="textPassword"
         android:layout_above="@id/buttonConnexion"
         android:hint="@string/passwordHint"
-        android:autofillHints="@string/passwordHint" />
+        android:autofillHints="@string/passwordHint"
+        />
 
     <Button
         android:id="@+id/buttonConnexion"

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.LilBro.LitBro.Activity.ConnextionActivity;
@@ -25,10 +26,11 @@ import java.util.Map;
 
 public class ParametreFragment extends Fragment implements View.OnClickListener{
 
-    Utilisateur user;
-    AlertDialog.Builder alertDialog = null;
-    Utilisateur userGenerated;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Utilisateur user;
+    private AlertDialog.Builder alertDialog = null;
+    private Utilisateur userGenerated;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Button btGenererCompte;
 
     public ParametreFragment(Utilisateur u) {
         this.user = u;
@@ -39,10 +41,11 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
     View result = inflater.inflate(R.layout.fragment_parametre, container, false);
-    result.findViewById(R.id.bGenererComptes).setOnClickListener(this);
+    btGenererCompte = result.findViewById(R.id.bGenererComptes);
+    btGenererCompte.setOnClickListener(this);
 
     if(!this.user.getUtilisateurType().equals("augmenté")){
-        result.setVisibility(View.GONE);
+        btGenererCompte.setVisibility(View.GONE);
     }
 
     alertDialog = new AlertDialog.Builder(getActivity());

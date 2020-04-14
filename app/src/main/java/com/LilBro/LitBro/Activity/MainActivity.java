@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     String description ;
     private Fragment mainFragment;
-    private ParametreFragment parametreFragment;
     Utilisateur user;
 
     @Override
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.activity_main_bottom_navigation);
+        bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation);
 
         Intent i = getIntent();
         user = (Utilisateur) i.getSerializableExtra("utilisateur");

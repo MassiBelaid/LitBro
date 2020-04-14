@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SplashActivity"
+    android:padding="20dp"
+    android:background="@color/colorFullWhite">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="270dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/logolilbro"
+        android:src="@mipmap/logo_lil_bro"
+        android:paddingTop="50dp" />
+
+
+    <TextView
+        android:id="@+id/helloInv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="@string/bonjour"
+        android:textAlignment="center"
+        android:textColor="@color/colorFullBlack"
+        android:textSize="40sp"
+        android:visibility="invisible"
+        android:layout_above="@id/progressBar"
+        android:layout_marginBottom="20dp"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:progressTint="@color/colorYellowGold" />
+
+
+</RelativeLayout>

@@ -13,4 +13,20 @@
     <string name="itemLocaux">Locals</string>
     <string name="itemAlert">Alerts</string>
     <string name="logolilbro">LogoLilBro</string>
+    <string name="bGenererCompte">Generate an user account</string>
+    <string name="titeGenererCompte">Save this user ?</string>
+    <string name="titeGenererComptePositif">Confirm</string>
+    <string name="titeGenererCompteNegatif">Cancel</string>
+    <string name="GenererCompteNegatif">User not registered</string>
+    <string name="GenererCompteSucce">User added</string>
+    <string name="GenererCompteFail">Unable to add at this moment</string>
+    <string name="modifLoginHint">New user name</string>
+    <string name="modifPasswordHint">New password</string>
+    <string name="modifPasswordHint2">Confirm new password</string>
+    <string name="buttonModifer">Modify</string>
+    <string name="motDePasseDifferents">Passwords are not equals</string>
+    <string name="motDePassecourt">Please choose a password with at least 6 characters</string>
+    <string name="modifCompteChampsIncomplet">Please fill all fields</string>
+    <string name="modifComptePseudExistant">User name already exist</string>
+    <string name="bonjour">Hello !</string>
 </resources>
