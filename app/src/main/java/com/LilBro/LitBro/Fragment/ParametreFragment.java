@@ -1,7 +1,10 @@
 package com.LilBro.LitBro.Fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +33,8 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     private AlertDialog.Builder alertDialog = null;
     private Utilisateur userGenerated;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Button btGenererCompte;
+    private Button btGenererCompte,btDeconnextion;
+    private SharedPreferences mPreferences;
 
     public ParametreFragment(Utilisateur u) {
         this.user = u;
@@ -43,6 +47,10 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     View result = inflater.inflate(R.layout.fragment_parametre, container, false);
     btGenererCompte = result.findViewById(R.id.bGenererComptes);
     btGenererCompte.setOnClickListener(this);
+    btDeconnextion = result.findViewById(R.id.bDeconnection);
+    btDeconnextion.setOnClickListener(this);
+
+    mPreferences = getActivity().getSharedPreferences("SESSION", Context.MODE_PRIVATE);
 
     if(!this.user.getUtilisateurType().equals("augmenté")){
         btGenererCompte.setVisibility(View.GONE);
@@ -74,10 +82,14 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             case R.id.bGenererComptes :
                 genererUser();
                 break;
+            case R.id.bDeconnection :
+                deconnection();
+                break;
             default:
                 break;
         }
     }
+
 
     private void genererUser (){
         String charsMDP = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -116,5 +128,15 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             }
         });
 
+    }
+
+    private void deconnection(){
+            mPreferences.edit().putString(Utilisateur.LOGIN,"").apply();
+            mPreferences.edit().putString(Utilisateur.MOTDEPASSE,"").apply();
+            mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,"").apply();
+            mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,"").apply();
+            //Toast.makeText(getActivity(),getPreferences(MODE_PRIVATE).getString(Utilisateur.LOGIN,""),Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getActivity(),ConnextionActivity.class);
+            startActivity(i);
     }
 }

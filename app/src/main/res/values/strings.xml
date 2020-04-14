@@ -30,6 +30,7 @@
     <string name="motDePassecourt">Veuillez saisir un mot de passe contenant au moins 6 caractéres</string>
     <string name="modifCompteChampsIncomplet">Veuillez remplir tout les champs d\'abord</string>
     <string name="modifComptePseudExistant">Pseudo déja pris</string>
+    <string name="deconnection">me déconnecter</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
