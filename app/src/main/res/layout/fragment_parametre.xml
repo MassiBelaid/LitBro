@@ -1,28 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ParametreFragment">
+
+
+    <TextView
+        android:id="@+id/rectTitre"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorFullBlack"
+        android:text="@string/itemParametre"
+        android:textSize="30sp"
+        android:textColor="@color/colorFullWhite"
+        android:paddingStart="25dp"
+        android:textStyle="bold"
+        />
 
     <Button
         android:id="@+id/bGenererComptes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorFullBlack"
-        android:textColor="@color/colorYellowGold"
+        android:background="@drawable/button_border"
+        android:textColor="@color/colorFullBlack"
         android:text="@string/bGenererCompte"
-        android:layout_above="@+id/bDeconnection"/>
-
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/itemParametre"
-        android:textSize="35sp"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/rectTitre"
+        android:layout_margin="10dp"
         />
+
+    <Button
+        android:id="@+id/bModifierAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:textColor="@color/colorFullBlack"
+        android:text="@string/modifAlert"
+        android:layout_below="@id/bGenererComptes"
+        android:layout_margin="10dp"
+        />
+
+
 
     <Button
         android:id="@+id/bDeconnection"
@@ -30,9 +49,9 @@
         android:layout_height="wrap_content"
         android:text="@string/deconnection"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:background="@color/colorFullBlack"
-        android:textColor="@color/colorYellowGold"
-        android:layout_marginTop="1dp"/>
+        android:background="@drawable/border_red"
+        android:textColor="@color/colorRedError"
+        android:layout_margin="10dp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

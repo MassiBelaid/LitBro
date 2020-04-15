@@ -31,6 +31,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
 
     private Utilisateur user;
     private AlertDialog.Builder alertDialog = null;
+    private AlertDialog.Builder alertDialogDeco = null;
     private Utilisateur userGenerated;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button btGenererCompte,btDeconnextion;
@@ -73,6 +74,23 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
         }
     });
 
+        alertDialogDeco = new AlertDialog.Builder(getActivity());
+        alertDialogDeco.setCancelable(true);
+        alertDialogDeco.setTitle(getResources().getString(R.string.deconnexion));
+
+        alertDialogDeco.setPositiveButton(getResources().getString(R.string.titeGenererComptePositif), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deconnection();
+            }
+        });
+        alertDialogDeco.setNegativeButton(getResources().getString(R.string.titeGenererCompteNegatif), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Toast.makeText(getActivity(),getResources().getString(R.string.deconnexionAnnulee),Toast.LENGTH_LONG).show();
+            }
+        });
+
     return result;
     }
 
@@ -83,7 +101,8 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
                 genererUser();
                 break;
             case R.id.bDeconnection :
-                deconnection();
+                alertDialogDeco.setMessage(R.string.demandeDeco);
+                alertDialogDeco.show();
                 break;
             default:
                 break;
@@ -92,7 +111,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
 
 
     private void genererUser (){
-        String charsMDP = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        String charsMDP = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
         String charsPseudo = "abcdefghijklmnopqrstuvwxyz";
         String pseudo = "", mdp = "";
         for (int i=0; i<6; i++)
@@ -135,7 +154,8 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             mPreferences.edit().putString(Utilisateur.MOTDEPASSE,"").apply();
             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,"").apply();
             mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,"").apply();
-            //Toast.makeText(getActivity(),getPreferences(MODE_PRIVATE).getString(Utilisateur.LOGIN,""),Toast.LENGTH_LONG).show();
+
+
             Intent i = new Intent(getActivity(),ConnextionActivity.class);
             startActivity(i);
     }

@@ -1,6 +1,8 @@
 package com.LilBro.LitBro.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
     TextView textError;
     EditText mdp1E, mdp2E, userE;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private SharedPreferences mPreferences;
 
 
     public ModifierLoginFragment(Utilisateur u) {
@@ -56,6 +59,8 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
         textError = (TextView) result.findViewById(R.id.textError);
         mdp1E = (EditText) result.findViewById(R.id.editPasswordmodif);
         mdp2E = (EditText) result.findViewById(R.id.editPasswordmodif2);
+
+        mPreferences = getActivity().getSharedPreferences("SESSION", Context.MODE_PRIVATE);
 
         // Inflate the layout for this fragment
         return result;
@@ -92,13 +97,20 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
+                                                        mPreferences.edit().putString(Utilisateur.LOGIN,userS).apply();
+                                                        mPreferences.edit().putString(Utilisateur.MOTDEPASSE,mdp1S).apply();
+                                                        mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,user.getUtilisateurType()).apply();
+                                                        mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,new Date().toString()).apply();
+                                                        mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,true).apply();
+
                                                         Toast.makeText(getActivity(),getResources().getString(R.string.GenererCompteSucce),Toast.LENGTH_LONG).show();
-                                                        Fragment mainFrag = new MainFragment("Changement avec succé");
+                                                        Fragment mainFrag = new MainFragment("Changement avec succès");
                                                         FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
 
                                                         fragTrans.replace(R.id.frame_layout_main,mainFrag);
-                                                        //fragTrans.addToBackStack(null);
                                                         fragTrans.commit();
+
+
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
                                             @Override

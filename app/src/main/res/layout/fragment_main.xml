@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.MainFragment">
 
+
     <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorFullBlack"
         android:text="@string/itemLocaux"
-        android:textSize="35sp"
-        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        android:textColor="@color/colorFullWhite"
+        android:paddingStart="35dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
         />
+
+
 
 </RelativeLayout>

@@ -14,20 +14,14 @@ import com.LilBro.LitBro.R;
 
 public class MainFragment extends Fragment {
 
-    private String description;
-    TextView textDescription;
 
-    public MainFragment(String description) {
-        this.description = description;
-    }
+    public MainFragment(String description){}
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        this.textDescription = (TextView) view.findViewById(R.id.textDescription);
-        this.textDescription.setText(this.description);
 
         return view;
 

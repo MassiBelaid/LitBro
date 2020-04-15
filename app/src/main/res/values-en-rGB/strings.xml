@@ -29,4 +29,10 @@
     <string name="modifCompteChampsIncomplet">Please fill all fields</string>
     <string name="modifComptePseudExistant">User name already exist</string>
     <string name="bonjour">Hello !</string>
+    <string name="deconnection">Logout</string>
+    <string name="deconnexion">Logout</string>
+    <string name="deconnexionAnnulee">Logout canceled</string>
+    <string name="demandeDeco">Are you sure you want to logout ?</string>
+    <string name="modifAlert">Modify alert type</string>
+    <string name="bienvenue">Welcome !</string>
 </resources>

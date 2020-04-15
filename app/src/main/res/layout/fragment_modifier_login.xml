@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.ModifierLoginFragment">
+    tools:context=".Fragment.ModifierLoginFragment"
+    android:padding="20dp">
 
 
     <TextView
@@ -16,6 +17,7 @@
         android:textSize="15dp"
         android:layout_marginBottom="40dp"
         android:textColor="@color/colorRedError"/>
+
     <TextView
         android:id="@+id/textLoginmodif"
         android:layout_width="wrap_content"
@@ -37,7 +39,8 @@
         android:autofillHints="@string/modifLoginHint"
         android:layout_toEndOf="@+id/textLoginmodif"
         android:layout_alignStart="@+id/editPasswordmodif"
-        android:hint="@string/loginHint" />
+        android:hint="@string/loginHint"
+        />
 
     <TextView
         android:id="@+id/textPasswordmodif"
@@ -91,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="150dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:text="@string/buttonModifer"

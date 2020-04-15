@@ -6,12 +6,14 @@
     tools:context=".Fragment.AlertFragment">
 
     <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorFullBlack"
         android:text="@string/itemAlert"
-        android:textSize="35sp"
-        android:layout_centerInParent="true"
+        android:textSize="30sp"
+        android:textColor="@color/colorFullWhite"
+        android:paddingStart="25dp"
+        android:textStyle="bold"
         />
 
 </RelativeLayout>
