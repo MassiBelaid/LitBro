@@ -52,7 +52,8 @@ public class ConnextionActivity extends AppCompatActivity {
                     getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.MOTDEPASSE,null),
                     getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEURTYPE,null),
                     (dateDernierChang),
-                    getSharedPreferences("SESSION",MODE_PRIVATE).getBoolean(Utilisateur.MODIFLOGIN,false));
+                    getSharedPreferences("SESSION",MODE_PRIVATE).getBoolean(Utilisateur.MODIFLOGIN,false),
+                    getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEUR_LOCAL,null));
 
 
 
@@ -84,12 +85,13 @@ public class ConnextionActivity extends AppCompatActivity {
                         if(documentSnapshot.getString("motDePasse").equals(motDePasse)){
                             user = new Utilisateur(documentSnapshot.getString("login"),documentSnapshot.getString("motDePasse"),
                                     documentSnapshot.getString("utilisateurType"),documentSnapshot.getDate("dateDernierChangement"),
-                                    documentSnapshot.getBoolean("modifLogin"));
+                                    documentSnapshot.getBoolean("modifLogin"),documentSnapshot.getString("StreamLocal"));
                             mPreferences.edit().putString(Utilisateur.LOGIN,documentSnapshot.getString("login")).apply();
                             mPreferences.edit().putString(Utilisateur.MOTDEPASSE,documentSnapshot.getString("motDePasse")).apply();
                             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,documentSnapshot.getString("utilisateurType")).apply();
                             mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,documentSnapshot.getDate("dateDernierChangement").toString()).apply();
                             mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,documentSnapshot.getBoolean("modifLogin")).apply();
+                            mPreferences.edit().putString(Utilisateur.MODIFLOGIN,documentSnapshot.getString("StreamLocal")).apply();
 
                             Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
                             i.putExtra("utilisateur",user);

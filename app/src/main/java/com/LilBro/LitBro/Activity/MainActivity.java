@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         user = (Utilisateur) i.getSerializableExtra("utilisateur");
         description = "User : "+user.getLogin()+" Type de compte "+user.getUtilisateurType();
         if(user.getModifLogin()){
-            configureAndShowMainFragment(new MainFragment(this.description));
+            configureAndShowMainFragment(new MainFragment(this.user.getLocalStream()));
         }else{
             configureAndShowMainFragment(new ModifierLoginFragment(user));
         }
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new ParametreFragment(this.user);
                 break;
             case R.id.itemIndex :
-                mainFragment = new MainFragment(this.description);
+                mainFragment = new MainFragment(this.user.getLocalStream());
                 break;
             case R.id.itemMaps :
                 mainFragment = new MapFragment();
