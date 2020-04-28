@@ -91,7 +91,7 @@ public class ConnextionActivity extends AppCompatActivity {
                             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,documentSnapshot.getString("utilisateurType")).apply();
                             mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,documentSnapshot.getDate("dateDernierChangement").toString()).apply();
                             mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,documentSnapshot.getBoolean("modifLogin")).apply();
-                            mPreferences.edit().putString(Utilisateur.MODIFLOGIN,documentSnapshot.getString("StreamLocal")).apply();
+                            mPreferences.edit().putString(Utilisateur.UTILISATEUR_LOCAL,documentSnapshot.getString("StreamLocal")).apply();
 
                             Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
                             i.putExtra("utilisateur",user);

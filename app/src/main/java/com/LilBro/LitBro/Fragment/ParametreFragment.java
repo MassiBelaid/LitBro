@@ -121,7 +121,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             j = (int)Math.floor(Math.random() * charsPseudo.length());
             pseudo += charsPseudo.charAt(j);
         }
-        userGenerated = new Utilisateur(pseudo,mdp,"simple", new Date(),false);
+        userGenerated = new Utilisateur(pseudo,mdp,"simple", new Date(),false, this.user.getLocalStream());
         alertDialog.setMessage("pseudo : "+userGenerated.getLogin()+"\nmot de passe : "+userGenerated.getMotDePasse());
         alertDialog.show();
     }
