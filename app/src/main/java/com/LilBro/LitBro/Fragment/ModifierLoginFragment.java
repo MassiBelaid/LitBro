@@ -92,6 +92,7 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                                         userColl.put(Utilisateur.MODIFLOGIN, true);
                                         userColl.put(Utilisateur.DATEDERNIERCHANGEMENT, new Date());
                                         userColl.put(Utilisateur.UTILISATEURTYPE, user.getUtilisateurType());
+                                        userColl.put(Utilisateur.UTILISATEUR_SUP, user.getUserSup());
                                         db.collection(ConnextionActivity.COLLECTION_NAME).document(user.getLogin()).delete();
                                         db.collection(ConnextionActivity.COLLECTION_NAME).document(userS).set(userColl)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -102,9 +103,10 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                                                         mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,user.getUtilisateurType()).apply();
                                                         mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,new Date().toString()).apply();
                                                         mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,true).apply();
+                                                        mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,user.getUserSup()).apply();
 
                                                         Toast.makeText(getActivity(),getResources().getString(R.string.GenererCompteSucce),Toast.LENGTH_LONG).show();
-                                                        Fragment mainFrag = new MainFragment("Changement avec succès");
+                                                        Fragment mainFrag = new MainFragment(new Utilisateur(userS, mdp1S, user.getUtilisateurType(), new Date(), true, user.getUserSup()));
                                                         FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
 
                                                         fragTrans.replace(R.id.frame_layout_main,mainFrag);

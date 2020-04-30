@@ -42,4 +42,8 @@
     <string name="bienvenue">Bienvenue !</string>
 
 
+    <string name="champIncomplets">Veuillez remplir tout les champs</string>
+    <string name="sessionExpiree">Votre session à expirée, veuillez vous reconnecter</string>
+
+
 </resources>

@@ -121,7 +121,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             j = (int)Math.floor(Math.random() * charsPseudo.length());
             pseudo += charsPseudo.charAt(j);
         }
-        userGenerated = new Utilisateur(pseudo,mdp,"simple", new Date(),false, this.user.getLocalStream());
+        userGenerated = new Utilisateur(pseudo,mdp,"simple", new Date(),false, this.user.getUtilisateurType());
         alertDialog.setMessage("pseudo : "+userGenerated.getLogin()+"\nmot de passe : "+userGenerated.getMotDePasse());
         alertDialog.show();
     }
@@ -133,6 +133,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
         userColl.put(Utilisateur.MODIFLOGIN, userGenerated.getModifLogin());
         userColl.put(Utilisateur.DATEDERNIERCHANGEMENT, userGenerated.getDateDernierChangement());
         userColl.put(Utilisateur.UTILISATEURTYPE, userGenerated.getUtilisateurType());
+        userColl.put(Utilisateur.UTILISATEUR_SUP, user.getLogin());
 
         db.collection(ConnextionActivity.COLLECTION_NAME).document(userGenerated.getLogin()).set(userColl)
         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -154,6 +155,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             mPreferences.edit().putString(Utilisateur.MOTDEPASSE,"").apply();
             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,"").apply();
             mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,"").apply();
+            mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,"").apply();
 
 
             Intent i = new Intent(getActivity(),ConnextionActivity.class);

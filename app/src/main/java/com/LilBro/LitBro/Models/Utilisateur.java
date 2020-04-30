@@ -9,24 +9,24 @@ public class Utilisateur implements Serializable {
     public static final String UTILISATEURTYPE = "utilisateurType";
     public static final String DATEDERNIERCHANGEMENT = "dateDernierChangement";
     public static final String MODIFLOGIN = "modifLogin";
-    public static final String UTILISATEUR_LOCAL = "StreamLocal";
+    public static final String UTILISATEUR_SUP = "utilisateurSuperieur";
 
     private String login;
     private String motDePasse;
     private String utilisateurType;
     private Date dateDernierChangement;
     private Boolean modifLogin;
-    private String localStream;
+    private String utilisateur_sup;
 
     public Utilisateur() {}
 
-    public Utilisateur (String login, String motDePasse, String utilisateurType, Date date, Boolean modifLogin, String stramUrl){
+    public Utilisateur (String login, String motDePasse, String utilisateurType, Date date, Boolean modifLogin, String utilisateur_sup){
         this.login = login;
         this.motDePasse = motDePasse;
         this.utilisateurType = utilisateurType;
         this.dateDernierChangement = date;
         this.modifLogin = modifLogin;
-        this.localStream = stramUrl;
+        this.utilisateur_sup = utilisateur_sup;
     }
 
     public void setLogin(String login){
@@ -64,10 +64,10 @@ public class Utilisateur implements Serializable {
         this.modifLogin = modifLogin;
     }
 
-    public String getLocalStream() {
-        return localStream;
+    public String getUserSup() {
+        return utilisateur_sup;
     }
-    public void setLocalStream(String s) {
-        this.localStream = s;
+    public void setUserSup(String s) {
+        this.utilisateur_sup = s;
     }
 }

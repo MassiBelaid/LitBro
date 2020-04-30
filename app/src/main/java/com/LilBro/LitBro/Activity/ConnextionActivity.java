@@ -53,13 +53,29 @@ public class ConnextionActivity extends AppCompatActivity {
                     getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEURTYPE,null),
                     (dateDernierChang),
                     getSharedPreferences("SESSION",MODE_PRIVATE).getBoolean(Utilisateur.MODIFLOGIN,false),
-                    getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEUR_LOCAL,null));
+                    getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEUR_SUP,null));
+            DocumentReference userRef = db.collection(COLLECTION_NAME).document(user.getLogin());
+            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()){
+                        if(documentSnapshot.getString("motDePasse").equals(user.getMotDePasse())) {
+                            Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
+                            i.putExtra("utilisateur", user);
+                            startActivity(i);
+                        }else{Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();}
+                    }else{Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();}
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();
+                }
+            });
 
 
 
-            Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
-            i.putExtra("utilisateur",user);
-            startActivity(i);
+
         }
 
         buttonConnection.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +91,7 @@ public class ConnextionActivity extends AppCompatActivity {
         final String motDePasse = editPassword.getText().toString();
 
         if(login.equals("") || motDePasse.equals("")){
-            Toast.makeText(ConnextionActivity.this,"Veuillez remplir tout les champs",Toast.LENGTH_LONG).show();
+            Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();
         }else{
             DocumentReference userRef = db.collection(COLLECTION_NAME).document(login);
             userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -85,13 +101,13 @@ public class ConnextionActivity extends AppCompatActivity {
                         if(documentSnapshot.getString("motDePasse").equals(motDePasse)){
                             user = new Utilisateur(documentSnapshot.getString("login"),documentSnapshot.getString("motDePasse"),
                                     documentSnapshot.getString("utilisateurType"),documentSnapshot.getDate("dateDernierChangement"),
-                                    documentSnapshot.getBoolean("modifLogin"),documentSnapshot.getString("StreamLocal"));
+                                    documentSnapshot.getBoolean("modifLogin"),documentSnapshot.getString("utilisateurSuperieur"));
                             mPreferences.edit().putString(Utilisateur.LOGIN,documentSnapshot.getString("login")).apply();
                             mPreferences.edit().putString(Utilisateur.MOTDEPASSE,documentSnapshot.getString("motDePasse")).apply();
                             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,documentSnapshot.getString("utilisateurType")).apply();
                             mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,documentSnapshot.getDate("dateDernierChangement").toString()).apply();
                             mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,documentSnapshot.getBoolean("modifLogin")).apply();
-                            mPreferences.edit().putString(Utilisateur.UTILISATEUR_LOCAL,documentSnapshot.getString("StreamLocal")).apply();
+                            mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,documentSnapshot.getString("utilisateurSuperieur")).apply();
 
                             Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
                             i.putExtra("utilisateur",user);

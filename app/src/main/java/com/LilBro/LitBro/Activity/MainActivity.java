@@ -26,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation);
 
         Intent i = getIntent();
         user = (Utilisateur) i.getSerializableExtra("utilisateur");
         description = "User : "+user.getLogin()+" Type de compte "+user.getUtilisateurType();
         if(user.getModifLogin()){
-            configureAndShowMainFragment(new MainFragment(this.user.getLocalStream()));
+            configureAndShowMainFragment(new MainFragment(this.user));
         }else{
             configureAndShowMainFragment(new ModifierLoginFragment(user));
         }
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new ParametreFragment(this.user);
                 break;
             case R.id.itemIndex :
-                mainFragment = new MainFragment(this.user.getLocalStream());
+                mainFragment = new MainFragment(this.user);
                 break;
             case R.id.itemMaps :
                 mainFragment = new MapFragment();
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new AlertFragment();
                 break;
             default:
-                mainFragment = new MainFragment(this.description);
+                mainFragment = new MainFragment(this.user);
 
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).commit();
