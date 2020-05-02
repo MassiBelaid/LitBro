@@ -44,7 +44,7 @@ public class ConnextionActivity extends AppCompatActivity {
         buttonConnection = (Button) findViewById(R.id.buttonConnexion);
 
         mPreferences = getSharedPreferences("SESSION",MODE_PRIVATE);
-        String userPseudo = getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.LOGIN,"");
+        /*String userPseudo = getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.LOGIN,"");
         //new SimpleDateFormat().parse(getPreferences(MODE_PRIVATE).getString(Utilisateur.DATEDERNIERCHANGEMENT,null));
         Date dateDernierChang = new Date();
         if(!userPseudo.equals("")){
@@ -73,10 +73,7 @@ public class ConnextionActivity extends AppCompatActivity {
                 }
             });
 
-
-
-
-        }
+        }*/
 
         buttonConnection.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -67,8 +67,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configureAndShowMainFragment(Fragment mainFragment){
-
         getSupportFragmentManager().beginTransaction().add(R.id.frame_layout_main,mainFragment).commit();
+    }
 
+    public Utilisateur getUser(){
+        return this.user;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(user.getModifLogin()){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new MainFragment(user)).commit();
+            bottomNavigationView.setSelectedItemId(R.id.itemIndex);
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new ModifierLoginFragment(user)).commit();
+            bottomNavigationView.setSelectedItemId(R.id.itemIndex);
+        }
     }
 }

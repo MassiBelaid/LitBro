@@ -44,6 +44,11 @@
 
     <string name="champIncomplets">Veuillez remplir tout les champs</string>
     <string name="sessionExpiree">Votre session à expirée, veuillez vous reconnecter</string>
+    <string name="btLive">Surveiller en directe</string>
+    <string name="btHistoriquesAlertes">historique alertes</string>
+    <string name="btAlerter">Alerter</string>
+    <string name="itemDirect">En Directe</string>
+    <string name="chargment">Chargement stream ...</string>
 
 
 </resources>

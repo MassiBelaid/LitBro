@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.DirecteLocalFragment">
+
+    <TextView
+        android:id="@+id/textChargement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chargment"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <VideoView
+
+        android:id="@+id/videoLive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btAlerter"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/textChargement"
+        android:layout_marginTop="10dp"
+        />
+    <Button
+        android:id="@+id/btAlerter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/btAlerter"
+        android:textSize="35sp"
+        android:textColor="@color/colorRedError"
+        android:layout_marginBottom="10dp"
+        />
+
+</RelativeLayout>

@@ -86,8 +86,7 @@ public class MainFragment extends Fragment {
 
 
             }
-        })
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         adapter = new itemLocalAdapter(ll);
@@ -98,7 +97,7 @@ public class MainFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Toast.makeText(getActivity(),getResources().getString(R.string.bddEchec),Toast.LENGTH_LONG).show();
             }
         });
 
