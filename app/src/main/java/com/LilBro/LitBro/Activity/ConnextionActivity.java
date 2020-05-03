@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class ConnextionActivity extends AppCompatActivity {
@@ -79,13 +80,28 @@ public class ConnextionActivity extends AppCompatActivity {
                             mPreferences.edit().putString(Utilisateur.LOGIN,documentSnapshot.getString("login")).apply();
                             mPreferences.edit().putString(Utilisateur.MOTDEPASSE,documentSnapshot.getString("motDePasse")).apply();
                             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,documentSnapshot.getString("utilisateurType")).apply();
-                            mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,documentSnapshot.getDate("dateDernierChangement").toString()).apply();
+                            mPreferences.edit().putLong(Utilisateur.DATEDERNIERCHANGEMENT,documentSnapshot.getDate("dateDernierChangement").getTime()).apply();
                             mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,documentSnapshot.getBoolean("modifLogin")).apply();
                             mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,documentSnapshot.getString("utilisateurSuperieur")).apply();
 
-                            Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
-                            i.putExtra("utilisateur",user);
-                            startActivity(i);
+                            Date dateDernierCHangement = user.getDateDernierChangement();
+                            Date today = new Date();
+
+                            Calendar c = Calendar.getInstance();
+                            c.setTime(dateDernierCHangement);
+                            c.add(Calendar.DATE, ModifMDPActivity.N_JOURS-10);
+                            dateDernierCHangement = c.getTime();
+
+                            if(today.compareTo(dateDernierCHangement) >= 0){
+                                Intent i = new Intent(ConnextionActivity.this, ModifMDPActivity.class);
+                                i.putExtra("utilisateur",user);
+                                startActivity(i);
+                            }else{
+                                Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
+                                i.putExtra("utilisateur",user);
+                                startActivity(i);
+                            }
+
                         }else{
                             Toast.makeText(ConnextionActivity.this,R.string.mdpIncorrect, Toast.LENGTH_LONG).show();
                         }

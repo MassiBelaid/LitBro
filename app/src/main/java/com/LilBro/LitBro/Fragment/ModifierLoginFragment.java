@@ -115,7 +115,7 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                                                         mPreferences.edit().putString(Utilisateur.LOGIN,userS).apply();
                                                         mPreferences.edit().putString(Utilisateur.MOTDEPASSE,mdp1S).apply();
                                                         mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,user.getUtilisateurType()).apply();
-                                                        mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,new Date().toString()).apply();
+                                                        mPreferences.edit().putLong(Utilisateur.DATEDERNIERCHANGEMENT,new Date().getTime()).apply();
                                                         mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,true).apply();
                                                         mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,user.getUserSup()).apply();
 

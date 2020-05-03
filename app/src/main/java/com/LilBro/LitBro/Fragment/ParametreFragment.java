@@ -168,7 +168,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             mPreferences.edit().putString(Utilisateur.LOGIN,"").apply();
             mPreferences.edit().putString(Utilisateur.MOTDEPASSE,"").apply();
             mPreferences.edit().putString(Utilisateur.UTILISATEURTYPE,"").apply();
-            mPreferences.edit().putString(Utilisateur.DATEDERNIERCHANGEMENT,"").apply();
+            mPreferences.edit().putLong(Utilisateur.DATEDERNIERCHANGEMENT,0).apply();
             mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,"").apply();
 
 

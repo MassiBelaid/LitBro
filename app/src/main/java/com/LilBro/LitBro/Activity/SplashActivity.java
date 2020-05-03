@@ -21,6 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class SplashActivity extends AppCompatActivity {
@@ -48,13 +49,13 @@ public class SplashActivity extends AppCompatActivity {
 
         mPreferences = getSharedPreferences("SESSION", MODE_PRIVATE);
         String userPseudo = getSharedPreferences("SESSION", MODE_PRIVATE).getString(Utilisateur.LOGIN, "");
-        //new SimpleDateFormat().parse(getPreferences(MODE_PRIVATE).getString(Utilisateur.DATEDERNIERCHANGEMENT,null));
+
         Date dateDernierChang = new Date();
         if (!userPseudo.equals("")) {
             user = new Utilisateur(getSharedPreferences("SESSION", MODE_PRIVATE).getString(Utilisateur.LOGIN, null),
                     getSharedPreferences("SESSION", MODE_PRIVATE).getString(Utilisateur.MOTDEPASSE, null),
                     getSharedPreferences("SESSION", MODE_PRIVATE).getString(Utilisateur.UTILISATEURTYPE, null),
-                    (dateDernierChang),
+                    new Date(getSharedPreferences("SESSION", MODE_PRIVATE).getLong(Utilisateur.DATEDERNIERCHANGEMENT, 0)),
                     getSharedPreferences("SESSION", MODE_PRIVATE).getBoolean(Utilisateur.MODIFLOGIN, false),
                     getSharedPreferences("SESSION", MODE_PRIVATE).getString(Utilisateur.UTILISATEUR_SUP, null));
             DocumentReference userRef = db.collection(COLLECTION_NAME).document(user.getLogin());
@@ -64,6 +65,8 @@ public class SplashActivity extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         if (documentSnapshot.getString("motDePasse").equals(user.getMotDePasse())) {
                             session = true;
+                            mPreferences.edit().putLong(Utilisateur.DATEDERNIERCHANGEMENT,documentSnapshot.getDate("dateDernierChangement").getTime()).apply();
+                            user.setDateDernierChangement(documentSnapshot.getDate("dateDernierChangement"));
                         } else {
                             session = false;
                         }
@@ -101,9 +104,23 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if(session){
-                                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                                i.putExtra("utilisateur", user);
-                                startActivity(i);
+                                Date dateDernierCHangement = user.getDateDernierChangement();
+                                Date today = new Date();
+
+                                Calendar c = Calendar.getInstance();
+                                c.setTime(dateDernierCHangement);
+                                c.add(Calendar.DATE, ModifMDPActivity.N_JOURS-10);
+                                dateDernierCHangement = c.getTime();
+
+                                if(today.compareTo(dateDernierCHangement) >= 0){
+                                    Intent i = new Intent(SplashActivity.this, ModifMDPActivity.class);
+                                    i.putExtra("utilisateur",user);
+                                    startActivity(i);
+                                }else{
+                                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                                    i.putExtra("utilisateur",user);
+                                    startActivity(i);
+                                }
                             }else{
                             Intent mySuperIntent = new Intent(SplashActivity.this, ConnextionActivity.class);
                             startActivity(mySuperIntent);

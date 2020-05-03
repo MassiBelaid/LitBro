@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".Activity.ModifMDPActivity">
+
+    <TextView
+        android:id="@+id/textErrormdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:layout_marginTop="75dp"
+        android:textColor="@color/colorRedError"/>
+
+
+    <TextView
+        android:id="@+id/textPasswordmodifmdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/passwordText"
+        android:textSize="20sp"
+        android:layout_alignTop="@+id/editPasswordmodifmdp"
+        android:layout_alignBottom="@id/editPasswordmodifmdp"
+        android:gravity="center"
+        android:textColor="@color/colorFullBlack"
+        />
+
+    <EditText
+        android:id="@+id/editPasswordmodifmdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/textPasswordmodifmdp"
+        android:layout_marginStart="10dp"
+        android:inputType="textPassword"
+        android:layout_above="@id/editPasswordmodif2mdp"
+        android:hint="@string/modifPasswordHint"
+        android:autofillHints="@string/passwordHint" />
+
+    <TextView
+        android:id="@+id/textPasswordmodif2mdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/passwordText"
+        android:textSize="20sp"
+        android:layout_alignTop="@+id/editPasswordmodif2mdp"
+        android:layout_alignBottom="@id/editPasswordmodif2mdp"
+        android:gravity="center"
+        android:textColor="@color/colorFullBlack"
+        />
+
+    <EditText
+        android:id="@+id/editPasswordmodif2mdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/textPasswordmodifmdp"
+        android:layout_marginStart="10dp"
+        android:inputType="textPassword"
+        android:layout_above="@id/buttonConfirmermdp"
+        android:hint="@string/modifPasswordHint2"
+        android:autofillHints="@string/passwordHint" />
+
+    <Button
+        android:id="@+id/buttonConfirmermdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="250dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/buttonModifer"
+        android:textColor="@color/colorFullWhite"
+        android:background="@color/colorYellowGold"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarModifLoginmdp"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/textIgnorermdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/textIgnorer"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"/>
+
+    <TextView
+        android:id="@+id/textDeconnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorRedError"
+        android:text="@string/deconnectionUnderline"/>
+
+</RelativeLayout>

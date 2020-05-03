@@ -52,6 +52,8 @@
     <string name="btHistorique">Historique des visionnages</string>
     <string name="btModifLogin">Modifier infos compte</string>
     <string name="changeMDP">Veuillez choisir un mot de passe différent du précédent</string>
+    <string name="textIgnorer">Ignorer pour le moment</string>
+    <string name="deconnectionUnderline"><u>Me déconnecter</u></string>
 
 
 </resources>
