@@ -1,6 +1,7 @@
 package com.LilBro.LitBro.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -113,4 +114,12 @@ public class SplashActivity extends AppCompatActivity {
             }).start();
 
 
-    }}
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+    }
+}

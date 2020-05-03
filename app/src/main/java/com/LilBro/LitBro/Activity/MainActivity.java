@@ -74,13 +74,16 @@ public class MainActivity extends AppCompatActivity {
     public Utilisateur getUser(){
         return this.user;
     }
+    public void setUtilisateur(Utilisateur u){
+        this.user = u;
+    }
 
     @Override
     public void onBackPressed() {
         if(user.getModifLogin()){
             //if(bottomNavigationView.getSelectedItemId() == R.id.itemIndex){
             if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment ){
-
+                finish();
             }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new MainFragment(user)).commit();
             bottomNavigationView.setSelectedItemId(R.id.itemIndex);}

@@ -35,7 +35,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     private AlertDialog.Builder alertDialogDeco = null;
     private Utilisateur userGenerated;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Button btGenererCompte,btDeconnextion,btHistorique;
+    private Button btGenererCompte,btDeconnextion,btHistorique,btModifLogin;
     private SharedPreferences mPreferences;
 
     public ParametreFragment(Utilisateur u) {
@@ -53,6 +53,8 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     btDeconnextion.setOnClickListener(this);
     btHistorique = result.findViewById(R.id.bHistoriqueVisionnage);
     btHistorique.setOnClickListener(this);
+    btModifLogin = result.findViewById(R.id.bModifLogin);
+    btModifLogin.setOnClickListener(this);
 
     mPreferences = getActivity().getSharedPreferences("SESSION", Context.MODE_PRIVATE);
 
@@ -111,6 +113,10 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             case R.id.bHistoriqueVisionnage :
                 MainActivity ma = (MainActivity) getContext();
                 ma.updateFragment(new HistoriqueVisionnageFragment(user));
+                break;
+            case R.id.bModifLogin :
+                MainActivity maa = (MainActivity) getContext();
+                maa.updateFragment(new ModifierLoginFragment(user));
                 break;
             default:
                 break;

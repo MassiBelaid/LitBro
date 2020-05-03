@@ -52,6 +52,17 @@
         android:layout_margin="5dp"
         />
 
+    <Button
+        android:id="@+id/bModifLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:textColor="@color/colorFullBlack"
+        android:text="@string/btModifLogin"
+        android:layout_below="@id/bHistoriqueVisionnage"
+        android:layout_margin="5dp"
+        />
+
 
 
     <Button
@@ -64,5 +75,6 @@
         android:textColor="@color/colorRedError"
         android:layout_margin="5dp"
         android:textStyle="bold"/>
+
 
 </RelativeLayout>

@@ -12,7 +12,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Date;
@@ -20,8 +22,10 @@ import com.LilBro.LitBro.Activity.ConnextionActivity;
 import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,6 +40,8 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
     TextView textError;
     EditText mdp1E, mdp2E, userE;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ProgressBar progBar;
+    Button bConfirmer;
     private SharedPreferences mPreferences;
 
 
@@ -59,6 +65,8 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
         textError = (TextView) result.findViewById(R.id.textError);
         mdp1E = (EditText) result.findViewById(R.id.editPasswordmodif);
         mdp2E = (EditText) result.findViewById(R.id.editPasswordmodif2);
+        progBar = (ProgressBar) result.findViewById(R.id.progressBarModifLogin);
+        bConfirmer = (Button) result.findViewById(R.id.buttonConfirmer);
 
         mPreferences = getActivity().getSharedPreferences("SESSION", Context.MODE_PRIVATE);
 
@@ -73,28 +81,34 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                 String userS = userE.getText().toString();
                 String mdp1S = mdp1E.getText().toString();
                 String mdp2S = mdp2E.getText().toString();
+                bConfirmer.setVisibility(View.INVISIBLE);
+                progBar.setVisibility(View.VISIBLE);
 
                 if(userS.equals("") || mdp1S.equals("") || mdp2S.equals("")){
                     textError.setText(getResources().getString(R.string.modifCompteChampsIncomplet));
                 }else{
                     if(mdp1S.equals(mdp2S)){
                         if(mdp1S.length() > 5){
-                            DocumentReference userRef = db.collection(ConnextionActivity.COLLECTION_NAME).document(userS);
-                            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    if(documentSnapshot.exists()){
-                                        textError.setText(getResources().getString(R.string.modifComptePseudExistant));
-                                    }else{
-                                        Map<String, Object> userColl = new HashMap<>();
-                                        userColl.put(Utilisateur.LOGIN, userS);
-                                        userColl.put(Utilisateur.MOTDEPASSE, mdp1S);
-                                        userColl.put(Utilisateur.MODIFLOGIN, true);
-                                        userColl.put(Utilisateur.DATEDERNIERCHANGEMENT, new Date());
-                                        userColl.put(Utilisateur.UTILISATEURTYPE, user.getUtilisateurType());
-                                        userColl.put(Utilisateur.UTILISATEUR_SUP, user.getUserSup());
-                                        db.collection(ConnextionActivity.COLLECTION_NAME).document(user.getLogin()).delete();
-                                        db.collection(ConnextionActivity.COLLECTION_NAME).document(userS).set(userColl)
+                            if (!mdp1S.equals(user.getMotDePasse())) {
+
+                                DocumentReference userRef = db.collection(ConnextionActivity.COLLECTION_NAME).document(userS);
+                                userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        if(documentSnapshot.exists() && !userS.equals(user.getLogin())){
+                                            textError.setText(getResources().getString(R.string.modifComptePseudExistant));
+                                            bConfirmer.setVisibility(View.VISIBLE);
+                                            progBar.setVisibility(View.INVISIBLE);
+                                        }else{
+                                            Map<String, Object> userColl = new HashMap<>();
+                                            userColl.put(Utilisateur.LOGIN, userS);
+                                            userColl.put(Utilisateur.MOTDEPASSE, mdp1S);
+                                            userColl.put(Utilisateur.MODIFLOGIN, true);
+                                            userColl.put(Utilisateur.DATEDERNIERCHANGEMENT, new Date());
+                                            userColl.put(Utilisateur.UTILISATEURTYPE, user.getUtilisateurType());
+                                            userColl.put(Utilisateur.UTILISATEUR_SUP, user.getUserSup());
+                                            db.collection(ConnextionActivity.COLLECTION_NAME).document(user.getLogin()).delete();
+                                            db.collection(ConnextionActivity.COLLECTION_NAME).document(userS).set(userColl)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
@@ -105,18 +119,25 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                                                         mPreferences.edit().putBoolean(Utilisateur.MODIFLOGIN,true).apply();
                                                         mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,user.getUserSup()).apply();
 
-                                                        Toast.makeText(getActivity(),getResources().getString(R.string.GenererCompteSucce),Toast.LENGTH_LONG).show();
-                                                        Fragment mainFrag = new MainFragment(new Utilisateur(userS, mdp1S, user.getUtilisateurType(), new Date(), true, user.getUserSup()));
-                                                        FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
+                                                        //Toast.makeText(getActivity(),getResources().getString(R.string.GenererCompteSucce),Toast.LENGTH_LONG).show();
+                                                        Utilisateur u = new Utilisateur(userS, mdp1S, user.getUtilisateurType(), new Date(), true, user.getUserSup());
+                                                        Fragment mainFrag = new MainFragment(u);
+                                                        MainActivity ma = (MainActivity) getContext();
+                                                        bConfirmer.setVisibility(View.VISIBLE);
+                                                        progBar.setVisibility(View.INVISIBLE);
+                                                        ma.setUtilisateur(u);
+                                                        ma.updateFragment(mainFrag);
 
-                                                        fragTrans.replace(R.id.frame_layout_main,mainFrag);
-                                                        fragTrans.commit();
+
+
 
 
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
+                                                bConfirmer.setVisibility(View.VISIBLE);
+                                                progBar.setVisibility(View.INVISIBLE);
                                                 Toast.makeText(getActivity(),getResources().getString(R.string.GenererCompteFail),Toast.LENGTH_LONG).show();
                                             }
                                         });
@@ -126,15 +147,26 @@ public class ModifierLoginFragment extends Fragment implements View.OnClickListe
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+                                    bConfirmer.setVisibility(View.VISIBLE);
+                                    progBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(getActivity(),R.string.bddEchec, Toast.LENGTH_LONG).show();
                                 }
                             });
 
+                            }else{
+                                textError.setText(getResources().getString(R.string.changeMDP));
+                                bConfirmer.setVisibility(View.VISIBLE);
+                                progBar.setVisibility(View.INVISIBLE);
+                            }
                         }else{
                             textError.setText(getResources().getString(R.string.motDePassecourt));
+                            bConfirmer.setVisibility(View.VISIBLE);
+                            progBar.setVisibility(View.INVISIBLE);
                         }
                     }else{
                         textError.setText(getResources().getString(R.string.motDePasseDifferents));
+                        bConfirmer.setVisibility(View.VISIBLE);
+                        progBar.setVisibility(View.INVISIBLE);
                     }
                 }
                 break;

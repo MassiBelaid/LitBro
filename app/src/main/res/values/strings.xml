@@ -50,6 +50,8 @@
     <string name="itemDirect">En Directe</string>
     <string name="chargment">Chargement stream ...</string>
     <string name="btHistorique">Historique des visionnages</string>
+    <string name="btModifLogin">Modifier infos compte</string>
+    <string name="changeMDP">Veuillez choisir un mot de passe différent du précédent</string>
 
 
 </resources>
