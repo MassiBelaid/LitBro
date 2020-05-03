@@ -77,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(user.getModifLogin()){
+            if(bottomNavigationView.getSelectedItemId() == R.id.itemIndex){
+
+            }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new MainFragment(user)).commit();
-            bottomNavigationView.setSelectedItemId(R.id.itemIndex);
+            bottomNavigationView.setSelectedItemId(R.id.itemIndex);}
         }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new ModifierLoginFragment(user)).commit();
             bottomNavigationView.setSelectedItemId(R.id.itemIndex);

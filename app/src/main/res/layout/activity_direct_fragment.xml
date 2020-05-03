@@ -24,6 +24,7 @@
         android:id="@+id/frame_layout_direct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/textTitre"
         android:layout_above="@+id/activity_main_bottom_navigation"/>
 
 </RelativeLayout>

@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,6 +35,7 @@ public class ConnextionActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     SharedPreferences mPreferences;
     Utilisateur user;
+    ProgressBar progressBar;
 
 
     @Override
@@ -42,42 +46,15 @@ public class ConnextionActivity extends AppCompatActivity {
         editLogin = (EditText)findViewById(R.id.editLogin);
         editPassword = (EditText)findViewById(R.id.editPassword);
         buttonConnection = (Button) findViewById(R.id.buttonConnexion);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         mPreferences = getSharedPreferences("SESSION",MODE_PRIVATE);
-        /*String userPseudo = getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.LOGIN,"");
-        //new SimpleDateFormat().parse(getPreferences(MODE_PRIVATE).getString(Utilisateur.DATEDERNIERCHANGEMENT,null));
-        Date dateDernierChang = new Date();
-        if(!userPseudo.equals("")){
-            user = new Utilisateur(getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.LOGIN,null),
-                    getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.MOTDEPASSE,null),
-                    getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEURTYPE,null),
-                    (dateDernierChang),
-                    getSharedPreferences("SESSION",MODE_PRIVATE).getBoolean(Utilisateur.MODIFLOGIN,false),
-                    getSharedPreferences("SESSION",MODE_PRIVATE).getString(Utilisateur.UTILISATEUR_SUP,null));
-            DocumentReference userRef = db.collection(COLLECTION_NAME).document(user.getLogin());
-            userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.exists()){
-                        if(documentSnapshot.getString("motDePasse").equals(user.getMotDePasse())) {
-                            Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
-                            i.putExtra("utilisateur", user);
-                            startActivity(i);
-                        }else{Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();}
-                    }else{Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();}
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();
-                }
-            });
-
-        }*/
 
         buttonConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonConnection.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 connexion();
             }
         });
@@ -120,6 +97,12 @@ public class ConnextionActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(ConnextionActivity.this,R.string.bddEchec, Toast.LENGTH_LONG).show();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    buttonConnection.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             });
 

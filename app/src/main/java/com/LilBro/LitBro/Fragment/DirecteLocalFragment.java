@@ -1,5 +1,6 @@
 package com.LilBro.LitBro.Fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -26,10 +28,12 @@ public class DirecteLocalFragment extends Fragment {
     public static final String COLLECTION_NAME = "local";
 
     private String nomLocal;
-    TextView textChargement;
     Button btAlerter;
     VideoView videoLive;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    ProgressBar progressBar;
+
+    private boolean isPLaying;
 
     public DirecteLocalFragment(String nomLocal) {
         this.nomLocal = nomLocal;
@@ -42,9 +46,11 @@ public class DirecteLocalFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.fragment_directe_local, container, false);
+
+        isPLaying = false;
         btAlerter = result.findViewById(R.id.btAlerter);
         videoLive = result.findViewById(R.id.videoLive);
-        textChargement = result.findViewById(R.id.textChargement);
+        progressBar = result.findViewById(R.id.progressBar);
 
         DocumentReference localRef = db.collection(COLLECTION_NAME).document(this.nomLocal);
 
@@ -55,14 +61,25 @@ public class DirecteLocalFragment extends Fragment {
                     Uri videoUri = Uri.parse(documentSnapshot.getString("live"));
                     videoLive.setVideoURI(videoUri);
                     videoLive.requestFocus();
+                    videoLive.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+                        @Override
+                        public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                            if(what == mp.MEDIA_INFO_BUFFERING_START){
+                                progressBar.setVisibility(View.VISIBLE);
+                            }else if(what == mp.MEDIA_INFO_BUFFERING_END){
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                            return false;
+                        }
+                    });
                     videoLive.start();
-                    textChargement.setVisibility(View.INVISIBLE);
+                    //textChargement.setVisibility(View.INVISIBLE);
                 }
             }
         }).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                textChargement.setVisibility(View.INVISIBLE);
+                //textChargement.setVisibility(View.INVISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
