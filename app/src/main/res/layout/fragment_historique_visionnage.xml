@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DirectFragmentActivity">
+    tools:context=".Fragment.HistoriqueVisionnageFragment">
 
     <TextView
         android:id="@+id/textTitre"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorFullBlack"
-        android:text="@string/itemDirect"
+        android:text="@string/btHistorique"
         android:textSize="30sp"
         android:textColor="@color/colorFullWhite"
-        android:paddingStart="35dp"
+        android:paddingStart="10dp"
         android:textStyle="bold"
         android:gravity="center_vertical"
         />
 
-    <FrameLayout
-        android:id="@+id/frame_layout_direct"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleurHistorique"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/textTitre"
-        android:layout_above="@+id/activity_main_bottom_navigation"/>
+        />
+
+
 
 </RelativeLayout>

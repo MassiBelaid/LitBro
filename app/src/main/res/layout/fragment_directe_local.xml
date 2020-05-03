@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.DirecteLocalFragment">
 
+    <TextView
+        android:id="@+id/textTitre"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorFullBlack"
+        android:text="@string/itemDirect"
+        android:textSize="30sp"
+        android:textColor="@color/colorFullWhite"
+        android:paddingStart="35dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        />
 
 
     <VideoView
@@ -15,7 +27,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/btAlerter"
         android:layout_margin="2dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/textTitre"
         />
     <ProgressBar
         android:id="@+id/progressBar"

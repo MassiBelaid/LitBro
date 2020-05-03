@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.LilBro.LitBro.Activity.ConnextionActivity;
+import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,7 +35,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     private AlertDialog.Builder alertDialogDeco = null;
     private Utilisateur userGenerated;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Button btGenererCompte,btDeconnextion;
+    private Button btGenererCompte,btDeconnextion,btHistorique;
     private SharedPreferences mPreferences;
 
     public ParametreFragment(Utilisateur u) {
@@ -50,11 +51,14 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     btGenererCompte.setOnClickListener(this);
     btDeconnextion = result.findViewById(R.id.bDeconnection);
     btDeconnextion.setOnClickListener(this);
+    btHistorique = result.findViewById(R.id.bHistoriqueVisionnage);
+    btHistorique.setOnClickListener(this);
 
     mPreferences = getActivity().getSharedPreferences("SESSION", Context.MODE_PRIVATE);
 
     if(!this.user.getUtilisateurType().equals("augmenté")){
         btGenererCompte.setVisibility(View.GONE);
+        btHistorique.setVisibility(View.GONE);
     }
 
     alertDialog = new AlertDialog.Builder(getActivity());
@@ -103,6 +107,10 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             case R.id.bDeconnection :
                 alertDialogDeco.setMessage(R.string.demandeDeco);
                 alertDialogDeco.show();
+                break;
+            case R.id.bHistoriqueVisionnage :
+                MainActivity ma = (MainActivity) getContext();
+                ma.updateFragment(new HistoriqueVisionnageFragment(user));
                 break;
             default:
                 break;

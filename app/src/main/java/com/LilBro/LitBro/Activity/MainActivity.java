@@ -2,6 +2,7 @@ package com.LilBro.LitBro.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(user.getModifLogin()){
-            if(bottomNavigationView.getSelectedItemId() == R.id.itemIndex){
+            //if(bottomNavigationView.getSelectedItemId() == R.id.itemIndex){
+            if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment ){
 
             }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new MainFragment(user)).commit();
@@ -86,5 +88,9 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new ModifierLoginFragment(user)).commit();
             bottomNavigationView.setSelectedItemId(R.id.itemIndex);
         }
+    }
+
+    public void updateFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,fragment).commit();
     }
 }

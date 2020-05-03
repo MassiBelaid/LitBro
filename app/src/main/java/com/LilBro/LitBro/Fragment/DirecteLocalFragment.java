@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 import android.net.Uri;
+
+import com.LilBro.LitBro.Activity.ConnextionActivity;
+import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,6 +25,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DirecteLocalFragment extends Fragment {
 
@@ -32,10 +39,12 @@ public class DirecteLocalFragment extends Fragment {
     VideoView videoLive;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ProgressBar progressBar;
+    Utilisateur user;
 
     private boolean isPLaying;
 
-    public DirecteLocalFragment(String nomLocal) {
+    public DirecteLocalFragment(String nomLocal, Utilisateur user) {
+        this.user = user;
         this.nomLocal = nomLocal;
     }
 
@@ -73,13 +82,12 @@ public class DirecteLocalFragment extends Fragment {
                         }
                     });
                     videoLive.start();
-                    //textChargement.setVisibility(View.INVISIBLE);
                 }
             }
         }).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                //textChargement.setVisibility(View.INVISIBLE);
+                saveInHistorique();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -90,5 +98,25 @@ public class DirecteLocalFragment extends Fragment {
 
 
         return result;
+    }
+
+    private void saveInHistorique(){
+        Map<String, Object> historique = new HashMap<>();
+        historique.put("utilisateur",user.getLogin());
+        historique.put("local",nomLocal);
+        historique.put("date",new Date());
+        if(user.getUtilisateurType().equals("simple")){
+            historique.put("utilisateurProp",user.getUserSup());
+        }else{
+            historique.put("utilisateurProp",user.getLogin());
+        }
+
+        db.collection("historiques").document().set(historique)
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(),getResources().getString(R.string.bddEchec),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

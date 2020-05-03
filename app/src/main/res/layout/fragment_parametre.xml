@@ -27,7 +27,7 @@
         android:textColor="@color/colorFullBlack"
         android:text="@string/bGenererCompte"
         android:layout_below="@id/rectTitre"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         />
 
     <Button
@@ -38,7 +38,18 @@
         android:textColor="@color/colorFullBlack"
         android:text="@string/modifAlert"
         android:layout_below="@id/bGenererComptes"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
+        />
+
+    <Button
+        android:id="@+id/bHistoriqueVisionnage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:textColor="@color/colorFullBlack"
+        android:text="@string/btHistorique"
+        android:layout_below="@id/bModifierAlert"
+        android:layout_margin="5dp"
         />
 
 
@@ -51,7 +62,7 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/border_red"
         android:textColor="@color/colorRedError"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:textStyle="bold"/>
 
 </RelativeLayout>
