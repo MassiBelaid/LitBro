@@ -11,24 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Fragment.DirecteLocalFragment;
+import com.LilBro.LitBro.Fragment.ImageLocalFragment;
 import com.LilBro.LitBro.Models.Local;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 
 public class itemLocal extends RecyclerView.ViewHolder {
 
-    TextView nomLocal;
+    TextView nomLocal,descLocal;
     ImageView imageLocal;
     View view;
-    Button bHistAlertes, btLive;
+    Button bHistAlertes, btLive, btImages;
 
     public itemLocal(View itemView) {
         super(itemView);
         this.view = itemView;
         nomLocal = itemView.findViewById(R.id.nomLocal);
+        descLocal = itemView.findViewById(R.id.descLocal);
         imageLocal = itemView.findViewById(R.id.imageLocal);
+        btImages = itemView.findViewById(R.id.btImages);
         bHistAlertes = itemView.findViewById(R.id.btHisAlertes);
         bHistAlertes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,14 +50,24 @@ public class itemLocal extends RecyclerView.ViewHolder {
             }
         });
 
+        btImages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity ma = (MainActivity) itemView.getContext();
+                Utilisateur user = ma.getUser();
+                ma.updateFragment(new ImageLocalFragment(nomLocal.getText().toString(), user));
+            }
+        });
+
     }
 
 
     public void updateItemWithLocal(Local local){
         this.nomLocal.setText(local.getNomLocal());
+        this.descLocal.setText(local.getCategorie());
 
         Glide.with(view).
-                load(Uri.parse(local.getImage()))
+                load(Uri.parse(local.getImage())).override(400,400).centerCrop()
                 .into(imageLocal);
     }
 

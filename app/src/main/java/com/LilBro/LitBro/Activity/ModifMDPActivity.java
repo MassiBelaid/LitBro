@@ -166,7 +166,11 @@ public class ModifMDPActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     private void deconnection(){
         mPreferences.edit().putString(Utilisateur.LOGIN,"").apply();

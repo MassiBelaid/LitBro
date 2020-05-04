@@ -9,34 +9,68 @@
 
     <TextView
         android:id="@+id/nomLocal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/bungee_inline"
         android:textColor="@color/colorFullBlack"
-        android:layout_toLeftOf="@+id/imageLocal"
-        />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/descLocal"
+        android:layout_below="@id/nomLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textSize="15sp" />
+
     <ImageView
         android:id="@+id/imageLocal"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         />
-    <Button
-        android:id="@+id/btHisAlertes"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:text="@string/btHistoriquesAlertes"
-        android:textSize="10sp"
-        android:layout_below="@id/nomLocal"
-        android:layout_marginTop="2dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageLocal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:paddingBottom="5dp"
+        >
+
+
 
     <Button
         android:id="@+id/btLive"
-        android:layout_width="150dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:text="@string/btLive"
         android:textSize="10sp"
-        android:layout_below="@id/btHisAlertes"
-        android:layout_marginTop="2dp"/>
+        android:layout_marginEnd="20dp"
+        />
 
+    <Button
+        android:id="@+id/btImages"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/btImg"
+        android:textSize="10sp"
+        />
+
+        <Button
+            android:id="@+id/btHisAlertes"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/btHistoriquesAlertes"
+            android:textSize="10sp"
+            android:layout_marginStart="20dp"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

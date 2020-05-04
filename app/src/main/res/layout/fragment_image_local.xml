@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.ImageLocalFragment">
+
+
+
+    <TextView
+        android:id="@+id/textTitre"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorFullBlack"
+        android:text="@string/imgLocal"
+        android:textSize="30sp"
+        android:textColor="@color/colorFullWhite"
+        android:paddingStart="35dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/imgRecycleur"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textTitre"
+        app:spanCount="2"
+        />
+
+
+
+</RelativeLayout>

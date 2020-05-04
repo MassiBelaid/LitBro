@@ -26,7 +26,7 @@ public class ItemHistorique extends RecyclerView.ViewHolder{
 
     public void updateItemWithHistorique(Historique historique){
         textNomLoc.setText(historique.getLocal());
-        textDate.setText(historique.getDate().toString());
+        textDate.setText(historique.dateToString());
         textUser.setText(historique.getUtilisateur());
     }
 }

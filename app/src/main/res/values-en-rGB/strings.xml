@@ -35,4 +35,6 @@
     <string name="demandeDeco">Are you sure you want to logout ?</string>
     <string name="modifAlert">Modify alert type</string>
     <string name="bienvenue">Welcome !</string>
+    <string name="btLive">Go live</string>
+    <string name="btHistoriquesAlertes">Alerts</string>
 </resources>

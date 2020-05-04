@@ -1,7 +1,10 @@
 package com.LilBro.LitBro.Models;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class Historique implements Serializable {
 
@@ -19,8 +22,17 @@ public class Historique implements Serializable {
         this.utilisateurProp = utilisateurProp;
     }
 
+    public String dateToString(){
+        Date d = this.getDate();
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM,new Locale("FR","fr"));
+        return df.format(d);
+    }
+
     public Date getDate() {
-        return date;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.date);
+        cal.add(Calendar.HOUR_OF_DAY,2);
+        return cal.getTime();
     }
 
     public String getLocal() {

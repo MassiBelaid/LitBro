@@ -24,10 +24,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -53,7 +56,7 @@ public class HistoriqueVisionnageFragment extends Fragment {
         monRecycleur = result.findViewById(R.id.recycleurHistorique);
 
         List<Historique> historiques = new ArrayList<>();
-        CollectionReference colHist = db.collection("historiques");
+        Query colHist = db.collection("historiques").orderBy("date");
         colHist.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -68,6 +71,7 @@ public class HistoriqueVisionnageFragment extends Fragment {
                 }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                Collections.reverse(historiques);
                 adapter = new ItemHitoriqueAdapter(historiques);
                 monRecycleur.setAdapter(adapter);
                 monRecycleur.setLayoutManager(new LinearLayoutManager(getActivity()));
