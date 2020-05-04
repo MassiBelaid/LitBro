@@ -26,9 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btAlerter"
-        android:layout_margin="2dp"
         android:layout_below="@id/textTitre"
         />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -36,15 +36,17 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         />
+
     <Button
         android:id="@+id/btAlerter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="@string/btAlerter"
-        android:textSize="35sp"
-        android:textColor="@color/colorRedError"
-        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorFullBlack"
+        android:background="@drawable/button_border"
+        android:layout_margin="3dp"
+
         />
 
 
