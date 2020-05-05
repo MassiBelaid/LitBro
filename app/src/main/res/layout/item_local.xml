@@ -52,6 +52,7 @@
         android:text="@string/btLive"
         android:textSize="10sp"
         android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/colorFullWhite"
         />
 
     <Button
@@ -60,6 +61,7 @@
         android:layout_height="40dp"
         android:text="@string/btImg"
         android:textSize="10sp"
+        android:backgroundTint="@color/colorFullWhite"
         />
 
         <Button
@@ -69,6 +71,7 @@
             android:text="@string/btHistoriquesAlertes"
             android:textSize="10sp"
             android:layout_marginStart="20dp"
+            android:backgroundTint="@color/colorFullWhite"
             />
 
     </LinearLayout>

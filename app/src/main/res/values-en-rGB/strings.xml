@@ -37,4 +37,23 @@
     <string name="bienvenue">Welcome !</string>
     <string name="btLive">Go live</string>
     <string name="btHistoriquesAlertes">Alerts</string>
+    <string name="boutonVoirAlerte">Show alerts</string>
+    <string name="itemAlertLocal">Alerts</string>
+    <string name="labelDate">Date :</string>
+    <string name="labelUser">User :</string>
+    <string name="labelLocal">Local :</string>
+    <string name="textHisAlerte">Alert video</string>
+    <string name="btShowAlerter">See alert video</string>
+    <string name="imgLocal">Local images</string>
+    <string name="btImg">Images</string>
+    <string name="deconnectionUnderline"><u>Log out</u></string>
+    <string name="textIgnorer">Ignore for the moment</string>
+    <string name="changeMDP">Please, choose a new different password</string>
+    <string name="btModifLogin">Modify account</string>
+    <string name="btHistorique">Viewing history</string>
+    <string name="chargment">Loading stream ...</string>
+    <string name="itemDirect">Live</string>
+    <string name="btAlerter">Alert</string>
+    <string name="sessionExpiree">Your session expired, please log in again</string>
+    <string name="champIncomplets">Please fill all fields</string>
 </resources>

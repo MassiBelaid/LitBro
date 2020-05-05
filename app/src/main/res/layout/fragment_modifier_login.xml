@@ -12,81 +12,60 @@
         android:id="@+id/textError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textLoginmodif"
         android:textAlignment="center"
         android:textSize="15dp"
+        android:layout_above="@id/editLoginmodif"
         android:layout_marginBottom="40dp"
         android:textColor="@color/colorRedError"/>
 
-    <TextView
-        android:id="@+id/textLoginmodif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loginText"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_alignTop="@id/editLoginmodif"
-        android:layout_alignBottom="@id/editLoginmodif"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
+
+
 
     <EditText
         android:id="@+id/editLoginmodif"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/textPasswordmodif"
+        android:layout_above="@id/editPasswordmodif"
         android:autofillHints="@string/modifLoginHint"
-        android:layout_toEndOf="@+id/textLoginmodif"
         android:layout_alignStart="@+id/editPasswordmodif"
         android:hint="@string/loginHint"
+
         />
 
-    <TextView
-        android:id="@+id/textPasswordmodif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/passwordText"
-        android:textSize="20sp"
-        android:layout_alignTop="@+id/editPasswordmodif"
-        android:layout_alignBottom="@id/editPasswordmodif"
-        android:gravity="center"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
+
 
     <EditText
         android:id="@+id/editPasswordmodif"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textPasswordmodif"
         android:layout_marginStart="10dp"
+        android:layout_centerInParent="true"
         android:inputType="textPassword"
         android:layout_above="@id/editPasswordmodif2"
         android:hint="@string/modifPasswordHint"
         android:autofillHints="@string/passwordHint" />
 
-    <TextView
-        android:id="@+id/textPasswordmodif2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/passwordText"
-        android:textSize="20sp"
-        android:layout_alignTop="@+id/editPasswordmodif2"
-        android:layout_alignBottom="@id/editPasswordmodif2"
-        android:gravity="center"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
+
 
     <EditText
         android:id="@+id/editPasswordmodif2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textPasswordmodif"
-        android:layout_marginStart="10dp"
+        android:layout_alignStart="@id/editPasswordmodif"
         android:inputType="textPassword"
         android:layout_above="@id/buttonConfirmer"
         android:hint="@string/modifPasswordHint2"
         android:autofillHints="@string/passwordHint" />
+
+
+
 
     <Button
         android:id="@+id/buttonConfirmer"
@@ -100,6 +79,9 @@
         android:text="@string/buttonModifer"
         android:textColor="@color/colorFullWhite"
         android:background="@color/colorYellowGold"/>
+
+
+
 
     <ProgressBar
         android:id="@+id/progressBarModifLogin"

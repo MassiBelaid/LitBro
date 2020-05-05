@@ -16,7 +16,7 @@
         android:text="@string/imgLocal"
         android:textSize="30sp"
         android:textColor="@color/colorFullWhite"
-        android:paddingStart="35dp"
+        android:paddingStart="25dp"
         android:textStyle="bold"
         android:gravity="center_vertical"
         />

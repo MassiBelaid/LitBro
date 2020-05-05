@@ -19,51 +19,37 @@
         android:textColor="@color/colorRedError"/>
 
 
-    <TextView
-        android:id="@+id/textPasswordmodifmdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/passwordText"
-        android:textSize="20sp"
-        android:layout_alignTop="@+id/editPasswordmodifmdp"
-        android:layout_alignBottom="@id/editPasswordmodifmdp"
-        android:gravity="center"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
+
+
 
     <EditText
         android:id="@+id/editPasswordmodifmdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textPasswordmodifmdp"
         android:layout_marginStart="10dp"
         android:inputType="textPassword"
         android:layout_above="@id/editPasswordmodif2mdp"
         android:hint="@string/modifPasswordHint"
-        android:autofillHints="@string/passwordHint" />
+        android:autofillHints="@string/passwordHint"
+        android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/textPasswordmodif2mdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/passwordText"
-        android:textSize="20sp"
-        android:layout_alignTop="@+id/editPasswordmodif2mdp"
-        android:layout_alignBottom="@id/editPasswordmodif2mdp"
-        android:gravity="center"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
 
     <EditText
         android:id="@+id/editPasswordmodif2mdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textPasswordmodifmdp"
         android:layout_marginStart="10dp"
         android:inputType="textPassword"
         android:layout_above="@id/buttonConfirmermdp"
         android:hint="@string/modifPasswordHint2"
         android:autofillHints="@string/passwordHint" />
+
+
+
 
     <Button
         android:id="@+id/buttonConfirmermdp"

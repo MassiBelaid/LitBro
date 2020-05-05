@@ -2,7 +2,6 @@ package com.LilBro.LitBro.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +11,16 @@ import com.LilBro.LitBro.Fragment.MainFragment;
 import com.LilBro.LitBro.Fragment.MapFragment;
 import com.LilBro.LitBro.Fragment.ModifierLoginFragment;
 import com.LilBro.LitBro.Fragment.ParametreFragment;
-import com.LilBro.LitBro.Fragment.VideoAlerteFragment;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
-    String description ;
+    private BottomNavigationView bottomNavigationView;
+    private String description ;
     private Fragment mainFragment;
-    Utilisateur user;
+    private Utilisateur user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new MainFragment(this.user);
 
         }
-        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).addToBackStack("tag").commit();
         return true;
     }
@@ -86,12 +84,15 @@ public class MainActivity extends AppCompatActivity {
         if(user.getModifLogin()){
             if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment ){
                 finish();
-            } else {
-                //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new AlertFragment(user)).commit();
-                //bottomNavigationView.setSelectedItemId(R.id.itemAlert);
+            } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MapFragment ||
+                    (getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof AlertFragment) ||
+                    (getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof ParametreFragment)){
 
+                bottomNavigationView.setSelectedItemId(R.id.itemIndex);
+                updateFragment(new MainFragment(user));
+
+            } else {
                 getSupportFragmentManager().popBackStackImmediate();
-                //updateBottomNavigation();
             }
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new ModifierLoginFragment(user)).commit();
@@ -101,24 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,fragment).addToBackStack("tag").commit();
-        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,fragment).commit();
-
     }
 
-    public void updateBottomNavigation(){
-        if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment){
-            bottomNavigationView.setSelectedItemId(R.id.itemIndex);
-        } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof AlertFragment){
-            bottomNavigationView.setSelectedItemId(R.id.itemAlert);
-        } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MapFragment){
-            bottomNavigationView.setSelectedItemId(R.id.itemMaps);
-        } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof ParametreFragment){
-            bottomNavigationView.setSelectedItemId(R.id.itemParametre);
-        }
-    }
 
-    public void updateBottomNavigation(int idItem){
-        bottomNavigationView.setSelectedItemId(idItem);
-    }
+
 
 }

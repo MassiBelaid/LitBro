@@ -22,6 +22,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,6 +40,7 @@ public class AlertFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ItemAlerteAdapter adapter;
     private String userProp;
+    private MainActivity ma;
 
     public AlertFragment(Utilisateur user) {
         this.user = user;
@@ -46,11 +49,10 @@ public class AlertFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        MainActivity ma = (MainActivity) getActivity();
-        ma.updateBottomNavigation(R.id.itemAlert);
 
         View result = inflater.inflate(R.layout.fragment_alert, container, false);
         monRecycleur = result.findViewById(R.id.recycleurAlerte);
+
 
         userProp = "";
         if(user.getUtilisateurType().equals("simple")){
@@ -92,4 +94,6 @@ public class AlertFragment extends Fragment {
 
         return result;
     }
+
+
 }

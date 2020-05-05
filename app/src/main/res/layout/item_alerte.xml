@@ -10,19 +10,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:textColor="@color/colorFullBlack"
-        android:text="local : "
+        android:text="@string/labelLocal"
         android:textSize="15sp"
-        android:layout_margin="10dp"/>
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        />
 
     <TextView
         android:id="@+id/textNomLocAlerte"
         android:textColor="@color/colorFullBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/text1Alerte"
+        android:layout_toEndOf="@+id/text1Alerte"
         android:textSize="15sp"
-        android:layout_margin="10dp"/>
+        android:layout_marginStart="3dp"
+        android:layout_alignBottom="@id/text1Alerte"
+        android:layout_alignTop="@id/text1Alerte"
+        android:gravity="center"
+        />
+
+
+
+
+
 
     <TextView
         android:id="@+id/text2Alerte"
@@ -30,19 +41,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text1Alerte"
-        android:text="Utilisateur : "
+        android:text="@string/labelUser"
         android:textSize="15sp"
-        android:layout_margin="10dp"/>
+        android:layout_alignStart="@id/text1Alerte"
+        android:gravity="center"
+        />
 
     <TextView
         android:id="@+id/textUserAlerte"
         android:textColor="@color/colorFullBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textNomLocAlerte"
-        android:layout_toRightOf="@+id/text2Alerte"
+        android:layout_toEndOf="@+id/text2Alerte"
         android:textSize="15sp"
-        android:layout_margin="10dp"/>
+        android:layout_alignBottom="@id/text2Alerte"
+        android:layout_alignTop="@id/text2Alerte"
+        android:gravity="center"
+        android:layout_marginStart="3dp"
+        />
+
+
+
+
+
 
     <TextView
         android:id="@+id/text3Alerte"
@@ -50,32 +71,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text2Alerte"
-        android:text="Date : "
+        android:text="@string/labelDate"
         android:textSize="15sp"
-        android:layout_margin="10dp"/>
+        android:layout_alignStart="@id/text1Alerte"
+        android:gravity="center"
+        />
 
     <TextView
         android:id="@+id/textDateAlerte"
         android:textColor="@color/colorFullBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textUserAlerte"
-        android:layout_toRightOf="@+id/text3Alerte"
+        android:layout_toEndOf="@+id/text3Alerte"
         android:textSize="15sp"
-        android:layout_margin="10dp"/>
+        android:layout_alignBottom="@id/text3Alerte"
+        android:layout_alignTop="@id/text3Alerte"
+        android:gravity="center"
+        android:layout_marginStart="3dp"
+        />
+
+
+
+
+
     <Button
         android:id="@+id/btShowAlerte"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text3Alerte"
         android:layout_centerHorizontal="true"
-        android:text="@string/btShowAlerter"
-        android:layout_marginTop="2dp"/>
+        android:text="@string/boutonVoirAlerte"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/colorYellowGold"
+        android:backgroundTint="@color/colorFullWhite"
+        android:shadowColor="@color/colorFullBlack"
+        />
+
+
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/btShowAlerte"
         android:background="@color/colorYellowGold"
         />

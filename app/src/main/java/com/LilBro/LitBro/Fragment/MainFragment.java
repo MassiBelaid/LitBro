@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -38,13 +39,12 @@ import java.util.List;
 
 public class MainFragment extends Fragment {
 
-    /*private VideoView vidLocal;
-    private Uri videoUri;*/
     private RecyclerView monRecycleur;
     private itemLocalAdapter adapter;
     private Utilisateur user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String idUserLocal;
+    private MainActivity ma;
 
 
     public MainFragment(Utilisateur user){
@@ -57,10 +57,9 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MainActivity ma = (MainActivity) getActivity();
-        ma.updateBottomNavigation(R.id.itemIndex);
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
 
         if(this.user.getUtilisateurType().equals(ConnextionActivity.UTILISATEUR_AUGMENTE)){
             this.idUserLocal = user.getLogin();
@@ -105,4 +104,7 @@ public class MainFragment extends Fragment {
         return view;
 
     }
+
+
+
 }

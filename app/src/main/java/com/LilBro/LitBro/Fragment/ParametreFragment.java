@@ -22,6 +22,7 @@ import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -37,17 +38,19 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button btGenererCompte,btDeconnextion,btHistorique,btModifLogin;
     private SharedPreferences mPreferences;
+    private MainActivity ma;
 
     public ParametreFragment(Utilisateur u) {
         this.user = u;
     }
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        MainActivity ma = (MainActivity) getActivity();
-        ma.updateBottomNavigation(R.id.itemParametre);
+
 
     View result = inflater.inflate(R.layout.fragment_parametre, container, false);
     btGenererCompte = result.findViewById(R.id.bGenererComptes);
@@ -58,6 +61,8 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     btHistorique.setOnClickListener(this);
     btModifLogin = result.findViewById(R.id.bModifLogin);
     btModifLogin.setOnClickListener(this);
+
+
 
     mPreferences = getActivity().getSharedPreferences("SESSION", Context.MODE_PRIVATE);
 
@@ -102,6 +107,11 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
 
     return result;
     }
+
+
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -178,4 +188,6 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             Intent i = new Intent(getActivity(),ConnextionActivity.class);
             startActivity(i);
     }
+
+
 }

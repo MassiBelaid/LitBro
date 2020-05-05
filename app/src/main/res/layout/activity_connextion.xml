@@ -17,52 +17,41 @@
         android:src="@mipmap/logo_lil_bro"
         android:paddingTop="50dp" />
 
-    <TextView
-        android:id="@+id/textLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loginText"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_alignTop="@id/editLogin"
-        android:layout_alignBottom="@id/editLogin"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
+
+
+
+
+
 
     <EditText
         android:id="@+id/editLogin"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/textPassword"
+        android:layout_above="@id/editPassword"
         android:autofillHints="@string/loginHint"
-        android:layout_toEndOf="@+id/textLogin"
         android:layout_alignStart="@+id/editPassword"
-        android:hint="@string/loginHint" />
+        android:hint="@string/loginHint"
+        android:layout_marginBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/textPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/passwordText"
-        android:textSize="20sp"
-        android:layout_alignTop="@+id/editPassword"
-        android:layout_alignBottom="@id/editPassword"
-        android:gravity="center"
-        android:textColor="@color/colorFullBlack"
-        />
+
+
 
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textPassword"
         android:layout_marginStart="10dp"
         android:inputType="textPassword"
         android:layout_above="@id/buttonConnexion"
         android:hint="@string/passwordHint"
         android:autofillHints="@string/passwordHint"
         />
+
+
+
 
     <Button
         android:id="@+id/buttonConnexion"

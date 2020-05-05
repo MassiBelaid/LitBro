@@ -11,7 +11,7 @@
         android:layout_height="45dp"
         android:background="@color/colorFullBlack"
         android:text="@string/btHistorique"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textColor="@color/colorFullWhite"
         android:paddingStart="10dp"
         android:textStyle="bold"
