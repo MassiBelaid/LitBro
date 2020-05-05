@@ -12,6 +12,7 @@ import com.LilBro.LitBro.Fragment.MainFragment;
 import com.LilBro.LitBro.Fragment.MapFragment;
 import com.LilBro.LitBro.Fragment.ModifierLoginFragment;
 import com.LilBro.LitBro.Fragment.ParametreFragment;
+import com.LilBro.LitBro.Fragment.VideoAlerteFragment;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new MapFragment();
                 break;
             case R.id.itemAlert :
-                mainFragment = new AlertFragment();
+                mainFragment = new AlertFragment(this.user);
                 break;
             default:
                 mainFragment = new MainFragment(this.user);
@@ -84,7 +85,11 @@ public class MainActivity extends AppCompatActivity {
             //if(bottomNavigationView.getSelectedItemId() == R.id.itemIndex){
             if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment ){
                 finish();
-            }else{
+            }else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof VideoAlerteFragment){
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new AlertFragment(user)).commit();
+                bottomNavigationView.setSelectedItemId(R.id.itemAlert);
+            }
+            else{
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new MainFragment(user)).commit();
             bottomNavigationView.setSelectedItemId(R.id.itemIndex);}
         }else{

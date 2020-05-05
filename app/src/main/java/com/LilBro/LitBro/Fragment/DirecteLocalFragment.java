@@ -39,7 +39,9 @@ public class DirecteLocalFragment extends Fragment {
     VideoView videoLive;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ProgressBar progressBar;
-    Utilisateur user;
+    private Utilisateur user;
+    String videoUri;
+    ProgressBar pb;
 
     private boolean isPLaying;
 
@@ -60,6 +62,7 @@ public class DirecteLocalFragment extends Fragment {
         btAlerter = result.findViewById(R.id.btAlerter);
         videoLive = result.findViewById(R.id.videoLive);
         progressBar = result.findViewById(R.id.progressBar);
+        pb = result.findViewById(R.id.progressBarAlerter);
 
         DocumentReference localRef = db.collection(COLLECTION_NAME).document(this.nomLocal);
 
@@ -67,6 +70,7 @@ public class DirecteLocalFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()){
+                    videoUri = documentSnapshot.getString("live");
                     Uri videoUri = Uri.parse(documentSnapshot.getString("live"));
                     videoLive.setVideoURI(videoUri);
                     videoLive.requestFocus();
@@ -96,6 +100,15 @@ public class DirecteLocalFragment extends Fragment {
             }
         });
 
+        btAlerter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pb.setVisibility(View.VISIBLE);
+                btAlerter.setVisibility(View.INVISIBLE);
+                alerter();
+            }
+        });
+
 
         return result;
     }
@@ -116,6 +129,33 @@ public class DirecteLocalFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(),getResources().getString(R.string.bddEchec),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void alerter(){
+        Map<String, Object> alerte = new HashMap<>();
+        alerte.put("utilisateur",user.getLogin());
+        alerte.put("local",nomLocal);
+        alerte.put("date",new Date());
+        alerte.put("vidAlerte",this.videoUri);
+        if(user.getUtilisateurType().equals("simple")){
+            alerte.put("utilisateurProp",user.getUserSup());
+        }else{
+            alerte.put("utilisateurProp",user.getLogin());
+        }
+
+        db.collection("alertes").document().set(alerte)
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(),getResources().getString(R.string.bddEchec),Toast.LENGTH_LONG).show();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                pb.setVisibility(View.INVISIBLE);
+                btAlerter.setVisibility(View.VISIBLE);
             }
         });
     }

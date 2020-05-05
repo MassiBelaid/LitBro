@@ -22,7 +22,7 @@
         android:id="@+id/helloInv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="casual"
+        android:fontFamily="@font/bungee_inline"
         android:text="@string/bienvenue"
         android:textAlignment="center"
         android:textColor="@color/colorFullBlack"
