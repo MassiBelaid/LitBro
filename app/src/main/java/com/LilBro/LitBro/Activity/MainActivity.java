@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         configureBottomView();
     }
 
+
     private void configureBottomView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> updateMainFragment(item.getItemId()));
     }
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new MainFragment(this.user);
 
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,mainFragment).addToBackStack("tag").commit();
         return true;
     }
 
@@ -82,23 +84,41 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if(user.getModifLogin()){
-            //if(bottomNavigationView.getSelectedItemId() == R.id.itemIndex){
             if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment ){
                 finish();
-            }else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof VideoAlerteFragment){
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new AlertFragment(user)).commit();
-                bottomNavigationView.setSelectedItemId(R.id.itemAlert);
+            } else {
+                //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new AlertFragment(user)).commit();
+                //bottomNavigationView.setSelectedItemId(R.id.itemAlert);
+
+                getSupportFragmentManager().popBackStackImmediate();
+                //updateBottomNavigation();
             }
-            else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new MainFragment(user)).commit();
-            bottomNavigationView.setSelectedItemId(R.id.itemIndex);}
-        }else{
+        } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,new ModifierLoginFragment(user)).commit();
             bottomNavigationView.setSelectedItemId(R.id.itemIndex);
         }
     }
 
     public void updateFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,fragment).addToBackStack("tag").commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main,fragment).commit();
+
     }
+
+    public void updateBottomNavigation(){
+        if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MainFragment){
+            bottomNavigationView.setSelectedItemId(R.id.itemIndex);
+        } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof AlertFragment){
+            bottomNavigationView.setSelectedItemId(R.id.itemAlert);
+        } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof MapFragment){
+            bottomNavigationView.setSelectedItemId(R.id.itemMaps);
+        } else if(getSupportFragmentManager().findFragmentById(R.id.frame_layout_main) instanceof ParametreFragment){
+            bottomNavigationView.setSelectedItemId(R.id.itemParametre);
+        }
+    }
+
+    public void updateBottomNavigation(int idItem){
+        bottomNavigationView.setSelectedItemId(idItem);
+    }
+
 }

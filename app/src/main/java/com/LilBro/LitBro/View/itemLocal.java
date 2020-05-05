@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.LilBro.LitBro.Activity.MainActivity;
+import com.LilBro.LitBro.Fragment.AlerteLocalFragment;
 import com.LilBro.LitBro.Fragment.DirecteLocalFragment;
 import com.LilBro.LitBro.Fragment.ImageLocalFragment;
 import com.LilBro.LitBro.Models.Local;
@@ -37,7 +38,9 @@ public class itemLocal extends RecyclerView.ViewHolder {
         bHistAlertes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(itemView.getContext(), "Bouton historique cliqué pour le local : "+nomLocal.getText().toString(), Toast.LENGTH_SHORT).show();
+                MainActivity ma = (MainActivity) itemView.getContext();
+                Utilisateur user = ma.getUser();
+                ma.updateFragment(new AlerteLocalFragment(user, nomLocal.getText().toString()));
             }
         });
         btLive = itemView.findViewById(R.id.btLive);

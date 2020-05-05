@@ -12,12 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Models.Alerte;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.LilBro.LitBro.View.ItemAlerteAdapter;
-import com.LilBro.LitBro.View.ItemHitoriqueAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,26 +29,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AlertFragment extends Fragment {
+
+public class AlerteLocalFragment extends Fragment {
 
     private Utilisateur user;
     private RecyclerView monRecycleur;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ItemAlerteAdapter adapter;
     private String userProp;
+    private String nomLocal;
 
-    public AlertFragment(Utilisateur user) {
+
+    public AlerteLocalFragment(Utilisateur user, String nomLocal) {
         this.user = user;
+        this.nomLocal = nomLocal;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        MainActivity ma = (MainActivity) getActivity();
-        ma.updateBottomNavigation(R.id.itemAlert);
 
-        View result = inflater.inflate(R.layout.fragment_alert, container, false);
-        monRecycleur = result.findViewById(R.id.recycleurAlerte);
+        View result = inflater.inflate(R.layout.fragment_alerte_local, container, false);
+        monRecycleur = result.findViewById(R.id.recycleurAlerteLocal);
 
         userProp = "";
         if(user.getUtilisateurType().equals("simple")){
@@ -67,7 +67,7 @@ public class AlertFragment extends Fragment {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(QueryDocumentSnapshot document : queryDocumentSnapshots){
                             Alerte aler = document.toObject(Alerte.class);
-                            if(aler.getUtilisateurProp().equals(userProp)){
+                            if(aler.getUtilisateurProp().equals(userProp) && aler.getLocal().equals(nomLocal)){
                                 listAlertes.add(aler);
                             }
                         }

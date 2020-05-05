@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.LilBro.LitBro.Activity.ConnextionActivity;
+import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Models.Local;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
@@ -55,14 +56,12 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        /*
-        vidLocal = view.findViewById(R.id.videoView);
-        vidLocal.setVideoURI(videoUri);
-        vidLocal.requestFocus();
-        vidLocal.start();
 
-         */
+        MainActivity ma = (MainActivity) getActivity();
+        ma.updateBottomNavigation(R.id.itemIndex);
+
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+
         if(this.user.getUtilisateurType().equals(ConnextionActivity.UTILISATEUR_AUGMENTE)){
             this.idUserLocal = user.getLogin();
         }else{

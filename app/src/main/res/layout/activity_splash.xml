@@ -27,7 +27,6 @@
         android:textAlignment="center"
         android:textColor="@color/colorFullBlack"
         android:textSize="40sp"
-        android:textStyle="bold"
         android:visibility="invisible"
         android:layout_above="@id/progressBar"
         android:layout_marginBottom="20dp"

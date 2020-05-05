@@ -46,6 +46,9 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        MainActivity ma = (MainActivity) getActivity();
+        ma.updateBottomNavigation(R.id.itemParametre);
+
     View result = inflater.inflate(R.layout.fragment_parametre, container, false);
     btGenererCompte = result.findViewById(R.id.bGenererComptes);
     btGenererCompte.setOnClickListener(this);

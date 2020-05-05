@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.R;
 
 
@@ -21,7 +22,10 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        MainActivity ma = (MainActivity) getActivity();
+        ma.updateBottomNavigation(R.id.itemMaps);
+
+
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 }

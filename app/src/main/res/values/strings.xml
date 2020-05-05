@@ -58,6 +58,7 @@
     <string name="imgLocal">Images local</string>
     <string name="btShowAlerter">Voir Vidéo de l\'alerte</string>
     <string name="textHisAlerte">Enregistrement Alerte</string>
+    <string name="itemAlertLocal">Alertes</string>
 
 
 </resources>
