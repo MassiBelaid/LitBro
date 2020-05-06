@@ -41,7 +41,7 @@ public class DirecteLocalFragment extends Fragment {
     String videoUri;
     ProgressBar pb;
 
-    private boolean isPLaying;
+    private boolean isPlaying;
 
     public DirecteLocalFragment(String nomLocal, Utilisateur user) {
         this.user = user;
@@ -56,10 +56,10 @@ public class DirecteLocalFragment extends Fragment {
         // Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.fragment_directe_local, container, false);
 
-        isPLaying = false;
+        isPlaying = false;
         btAlerter = result.findViewById(R.id.btAlerter);
         videoLive = result.findViewById(R.id.videoLive);
-        progressBar = result.findViewById(R.id.progressBar);
+        progressBar = result.findViewById(R.id.progressBarVid);
         pb = result.findViewById(R.id.progressBarAlerter);
 
         DocumentReference localRef = db.collection(COLLECTION_NAME).document(this.nomLocal);
@@ -72,18 +72,8 @@ public class DirecteLocalFragment extends Fragment {
                     Uri videoUri = Uri.parse(documentSnapshot.getString("live"));
                     videoLive.setVideoURI(videoUri);
                     videoLive.requestFocus();
-                    videoLive.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-                        @Override
-                        public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                            if(what == mp.MEDIA_INFO_BUFFERING_START){
-                                progressBar.setVisibility(View.VISIBLE);
-                            }else if(what == mp.MEDIA_INFO_BUFFERING_END){
-                                progressBar.setVisibility(View.INVISIBLE);
-                            }
-                            return false;
-                        }
-                    });
-                    videoLive.start();
+
+
                 }
             }
         }).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -101,11 +91,29 @@ public class DirecteLocalFragment extends Fragment {
         btAlerter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pb.setVisibility(View.VISIBLE);
-                btAlerter.setVisibility(View.INVISIBLE);
-                alerter();
+                if(isPlaying){
+                    pb.setVisibility(View.VISIBLE);
+                    btAlerter.setVisibility(View.INVISIBLE);
+                    alerter();
+                }
             }
         });
+
+        videoLive.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            @Override
+            public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                if(what == mp.MEDIA_INFO_VIDEO_RENDERING_START){
+                    progressBar.setVisibility(View.GONE);
+                }else if(what == mp.MEDIA_INFO_BUFFERING_END){
+                    progressBar.setVisibility(View.VISIBLE);
+                }else if(what == mp.MEDIA_INFO_BUFFERING_START){
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+                return false;
+            }
+        });
+        videoLive.start();
+        isPlaying = true;
 
 
         return result;

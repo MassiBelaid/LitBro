@@ -39,10 +39,12 @@ public class VideoAlerteFragment extends Fragment {
         videoAlerte.setOnInfoListener(new MediaPlayer.OnInfoListener() {
             @Override
             public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                if(what == mp.MEDIA_INFO_BUFFERING_START){
-                    pbAlerte.setVisibility(View.VISIBLE);
+                if(what == mp.MEDIA_INFO_VIDEO_RENDERING_START){
+                    pbAlerte.setVisibility(View.GONE);
                 }else if(what == mp.MEDIA_INFO_BUFFERING_END){
-                    pbAlerte.setVisibility(View.INVISIBLE);
+                    pbAlerte.setVisibility(View.VISIBLE);
+                }else if(what == mp.MEDIA_INFO_BUFFERING_START){
+                    pbAlerte.setVisibility(View.VISIBLE);
                 }
                 return false;
             }

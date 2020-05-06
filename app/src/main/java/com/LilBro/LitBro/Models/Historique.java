@@ -29,10 +29,7 @@ public class Historique implements Serializable {
     }
 
     public Date getDate() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(this.date);
-        cal.add(Calendar.HOUR_OF_DAY,2);
-        return cal.getTime();
+        return this.date;
     }
 
     public String getLocal() {
