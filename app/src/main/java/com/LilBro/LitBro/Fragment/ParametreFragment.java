@@ -16,13 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.LilBro.LitBro.Activity.ConnextionActivity;
+import com.LilBro.LitBro.Activity.ConnectionActivity;
 import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -162,7 +161,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
         userColl.put(Utilisateur.UTILISATEURTYPE, userGenerated.getUtilisateurType());
         userColl.put(Utilisateur.UTILISATEUR_SUP, user.getLogin());
 
-        db.collection(ConnextionActivity.COLLECTION_NAME).document(userGenerated.getLogin()).set(userColl)
+        db.collection(ConnectionActivity.COLLECTION_NAME).document(userGenerated.getLogin()).set(userColl)
         .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -185,7 +184,7 @@ public class ParametreFragment extends Fragment implements View.OnClickListener{
             mPreferences.edit().putString(Utilisateur.UTILISATEUR_SUP,"").apply();
 
 
-            Intent i = new Intent(getActivity(),ConnextionActivity.class);
+            Intent i = new Intent(getActivity(), ConnectionActivity.class);
             startActivity(i);
     }
 

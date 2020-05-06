@@ -20,14 +20,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 
-public class itemLocal extends RecyclerView.ViewHolder {
+public class ItemLocal extends RecyclerView.ViewHolder {
 
     TextView nomLocal,descLocal;
     ImageView imageLocal;
     View view;
     Button bHistAlertes, btLive, btImages;
 
-    public itemLocal(View itemView) {
+    public ItemLocal(View itemView) {
         super(itemView);
         this.view = itemView;
         nomLocal = itemView.findViewById(R.id.nomLocal);

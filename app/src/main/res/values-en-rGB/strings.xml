@@ -37,7 +37,7 @@
     <string name="bienvenue">Welcome !</string>
     <string name="btLive">Go live</string>
     <string name="btHistoriquesAlertes">Alerts</string>
-    <string name="boutonVoirAlerte">Show alerts</string>
+    <string name="boutonVoirAlerte">Show</string>
     <string name="itemAlertLocal">Alerts</string>
     <string name="labelDate">Date :</string>
     <string name="labelUser">User :</string>

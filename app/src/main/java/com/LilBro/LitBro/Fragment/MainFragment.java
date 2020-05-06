@@ -1,6 +1,5 @@
 package com.LilBro.LitBro.Fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,25 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
-import com.LilBro.LitBro.Activity.ConnextionActivity;
+import com.LilBro.LitBro.Activity.ConnectionActivity;
 import com.LilBro.LitBro.Activity.MainActivity;
 import com.LilBro.LitBro.Models.Local;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
-import com.LilBro.LitBro.View.itemLocalAdapter;
+import com.LilBro.LitBro.View.ItemLocalAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -40,7 +34,7 @@ import java.util.List;
 public class MainFragment extends Fragment {
 
     private RecyclerView monRecycleur;
-    private itemLocalAdapter adapter;
+    private ItemLocalAdapter adapter;
     private Utilisateur user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String idUserLocal;
@@ -61,7 +55,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
 
-        if(this.user.getUtilisateurType().equals(ConnextionActivity.UTILISATEUR_AUGMENTE)){
+        if(this.user.getUtilisateurType().equals(ConnectionActivity.UTILISATEUR_AUGMENTE)){
             this.idUserLocal = user.getLogin();
         }else{
             this.idUserLocal = user.getUserSup();
@@ -87,7 +81,7 @@ public class MainFragment extends Fragment {
         }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        adapter = new itemLocalAdapter(ll);
+                        adapter = new ItemLocalAdapter(ll);
                         monRecycleur.setAdapter(adapter);
                         monRecycleur.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }

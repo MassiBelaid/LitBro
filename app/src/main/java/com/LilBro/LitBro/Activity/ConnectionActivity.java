@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ConnextionActivity extends AppCompatActivity {
+public class ConnectionActivity extends AppCompatActivity {
 
     public static final String UTILISATEUR_AUGMENTE = "augmenté";
     public static final String UTILISATEUR_SIMPLE = "simple";
@@ -42,7 +42,7 @@ public class ConnextionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connextion);
+        setContentView(R.layout.activity_connection);
 
         editLogin = (EditText)findViewById(R.id.editLogin);
         editPassword = (EditText)findViewById(R.id.editPassword);
@@ -66,7 +66,7 @@ public class ConnextionActivity extends AppCompatActivity {
         final String motDePasse = editPassword.getText().toString();
 
         if(login.equals("") || motDePasse.equals("")){
-            Toast.makeText(ConnextionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();
+            Toast.makeText(ConnectionActivity.this,R.string.champIncomplets,Toast.LENGTH_LONG).show();
         }else{
             DocumentReference userRef = db.collection(COLLECTION_NAME).document(login);
             userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -93,26 +93,26 @@ public class ConnextionActivity extends AppCompatActivity {
                             dateDernierCHangement = c.getTime();
 
                             if(today.compareTo(dateDernierCHangement) >= 0){
-                                Intent i = new Intent(ConnextionActivity.this, ModifMDPActivity.class);
+                                Intent i = new Intent(ConnectionActivity.this, ModifMDPActivity.class);
                                 i.putExtra("utilisateur",user);
                                 startActivity(i);
                             }else{
-                                Intent i = new Intent(ConnextionActivity.this, MainActivity.class);
+                                Intent i = new Intent(ConnectionActivity.this, MainActivity.class);
                                 i.putExtra("utilisateur",user);
                                 startActivity(i);
                             }
 
                         }else{
-                            Toast.makeText(ConnextionActivity.this,R.string.mdpIncorrect, Toast.LENGTH_LONG).show();
+                            Toast.makeText(ConnectionActivity.this,R.string.mdpIncorrect, Toast.LENGTH_LONG).show();
                         }
                     }else{
-                        Toast.makeText(ConnextionActivity.this,R.string.userInexistant, Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConnectionActivity.this,R.string.userInexistant, Toast.LENGTH_LONG).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ConnextionActivity.this,R.string.bddEchec, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConnectionActivity.this,R.string.bddEchec, Toast.LENGTH_LONG).show();
                 }
             }).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override

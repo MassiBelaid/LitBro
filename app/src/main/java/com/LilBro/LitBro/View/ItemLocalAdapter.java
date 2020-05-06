@@ -14,24 +14,24 @@ import com.LilBro.LitBro.R;
 
 import java.util.List;
 
-public class itemLocalAdapter extends RecyclerView.Adapter<itemLocal> {
+public class ItemLocalAdapter extends RecyclerView.Adapter<ItemLocal> {
     private List<Local> listeLocaux;
 
-    public itemLocalAdapter(List<Local> listLocaux){
+    public ItemLocalAdapter(List<Local> listLocaux){
         this.listeLocaux = listLocaux;
     }
 
     @NonNull
     @Override
-    public itemLocal onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemLocal onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflator = LayoutInflater.from(context);
         View v1 = inflator.inflate(R.layout.item_local,parent,false);
-        return new itemLocal(v1);
+        return new ItemLocal(v1);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull itemLocal holder, int position) {
+    public void onBindViewHolder(@NonNull ItemLocal holder, int position) {
         holder.updateItemWithLocal(this.listeLocaux.get(position));
     }
 
