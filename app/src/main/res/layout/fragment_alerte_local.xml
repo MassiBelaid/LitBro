@@ -6,6 +6,17 @@
     tools:context=".Fragment.AlerteLocalFragment">
 
 
+    <TextView
+        android:id="@+id/pasAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/noAlert"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        />
+
 
     <TextView
         android:id="@+id/textTitreLocal"

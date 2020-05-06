@@ -56,4 +56,6 @@
     <string name="btAlerter">Alert</string>
     <string name="sessionExpiree">Your session expired, please log in again</string>
     <string name="champIncomplets">Please fill all fields</string>
+    <string name="noImg">No picture available</string>
+    <string name="noAlert">No alert for this local</string>
 </resources>

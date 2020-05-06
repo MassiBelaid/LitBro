@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.LilBro.LitBro.Models.Alerte;
@@ -38,6 +39,7 @@ public class AlerteLocalFragment extends Fragment {
     private ItemAlerteAdapter adapter;
     private String userProp;
     private String nomLocal;
+    private TextView txtPasAlert;
 
 
     public AlerteLocalFragment(Utilisateur user, String nomLocal) {
@@ -51,6 +53,7 @@ public class AlerteLocalFragment extends Fragment {
 
         View result = inflater.inflate(R.layout.fragment_alerte_local, container, false);
         monRecycleur = result.findViewById(R.id.recycleurAlerteLocal);
+        txtPasAlert = result.findViewById(R.id.pasAlert);
 
         userProp = "";
         if(user.getUtilisateurType().equals("simple")){
@@ -75,10 +78,13 @@ public class AlerteLocalFragment extends Fragment {
                 }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Collections.reverse(listAlertes);
-                adapter = new ItemAlerteAdapter(listAlertes);
-                monRecycleur.setAdapter(adapter);
-                monRecycleur.setLayoutManager(new LinearLayoutManager(getActivity()));
+                if(listAlertes.size() > 0){
+                    Collections.reverse(listAlertes);
+                    adapter = new ItemAlerteAdapter(listAlertes);
+                    monRecycleur.setAdapter(adapter);
+                    monRecycleur.setLayoutManager(new LinearLayoutManager(getActivity()));
+                } else { txtPasAlert.setVisibility(View.VISIBLE); }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -19,4 +19,16 @@
         />
 
 
+
+    <TextView
+        android:id="@+id/pasMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Coming soon"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        />
+
+
 </RelativeLayout>

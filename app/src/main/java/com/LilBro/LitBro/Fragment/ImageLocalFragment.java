@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.LilBro.LitBro.Models.Image;
 import com.LilBro.LitBro.Models.Utilisateur;
@@ -35,6 +36,8 @@ public class ImageLocalFragment extends Fragment {
     private RecyclerView rv;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ItemImageAdapter imgAdapteur;
+    private TextView txtPasImg;
+
 
     public ImageLocalFragment(String nomLocal, Utilisateur user) {
         this.nomLocal = nomLocal;
@@ -44,9 +47,10 @@ public class ImageLocalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_image_local, container, false);
         rv = view.findViewById(R.id.imgRecycleur);
+        txtPasImg = view.findViewById(R.id.pasImg);
         List<Image> listeImage = new ArrayList<>();
         CollectionReference imgRef = db.collection("refimg");
         imgRef.get()
@@ -63,9 +67,10 @@ public class ImageLocalFragment extends Fragment {
                 }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                imgAdapteur = new ItemImageAdapter(listeImage);
-                rv.setAdapter(imgAdapteur);
-                //rv.setLayoutManager(new GridLayoutManager(getActivity()));
+                if(listeImage.size() > 0){
+                    imgAdapteur = new ItemImageAdapter(listeImage);
+                    rv.setAdapter(imgAdapteur);
+                } else{ txtPasImg.setVisibility(View.VISIBLE); }
             }
         });
         return view;

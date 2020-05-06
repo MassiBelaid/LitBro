@@ -80,6 +80,7 @@ public class DirecteLocalFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 saveInHistorique();
+                isPlaying = true;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -113,7 +114,6 @@ public class DirecteLocalFragment extends Fragment {
             }
         });
         videoLive.start();
-        isPlaying = true;
 
 
         return result;
@@ -162,6 +162,8 @@ public class DirecteLocalFragment extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 pb.setVisibility(View.INVISIBLE);
                 btAlerter.setVisibility(View.VISIBLE);
+                btAlerter.setClickable(false);
+                Toast.makeText(getActivity(),"Vous ne spammerez pas", Toast.LENGTH_LONG).show();
             }
         });
     }

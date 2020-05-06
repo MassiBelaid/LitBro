@@ -63,6 +63,8 @@
     <string name="labelDate">Date :</string>
     <string name="labelUser">Utilisateur :</string>
     <string name="labelLocal">Local :</string>
+    <string name="noImg">Pas d\'image disponible</string>
+    <string name="noAlert">Pas d\'alerte pour ce local</string>
 
 
 </resources>

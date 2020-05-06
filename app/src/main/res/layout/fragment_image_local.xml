@@ -7,6 +7,17 @@
     tools:context=".Fragment.ImageLocalFragment">
 
 
+    <TextView
+        android:id="@+id/pasImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/noImg"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        />
+
 
     <TextView
         android:id="@+id/textTitre"
