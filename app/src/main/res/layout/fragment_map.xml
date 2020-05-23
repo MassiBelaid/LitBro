@@ -7,6 +7,7 @@
     tools:context=".Fragment.MapFragment">
 
     <TextView
+        android:id="@+id/textTitreMap"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorFullBlack"
@@ -20,7 +21,7 @@
 
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/pasMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +29,15 @@
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
         android:textSize="20sp"
-        />
+        />-->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:transitionName="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textTitreMap"/>
+
+
 
 
 </RelativeLayout>

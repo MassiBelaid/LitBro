@@ -38,7 +38,6 @@ public class MainFragment extends Fragment {
     private Utilisateur user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String idUserLocal;
-    private MainActivity ma;
 
 
     public MainFragment(Utilisateur user){

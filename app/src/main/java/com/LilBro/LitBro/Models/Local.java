@@ -1,5 +1,7 @@
 package com.LilBro.LitBro.Models;
 
+import com.google.firebase.firestore.GeoPoint;
+
 import java.io.Serializable;
 
 public class Local implements Serializable {
@@ -11,13 +13,23 @@ public class Local implements Serializable {
     private String telephone;
     private String utilisateurProp;
     private String zone;
+    private GeoPoint localisation;
 
 
     public Local(){}
     public Local(String nom){
         this.nomLocal = nom;
     }
-    public Local(String nom,String categorie, String image, String live, String surv, String tel, String uP, String zone){
+
+    public GeoPoint getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(GeoPoint localisation) {
+        this.localisation = localisation;
+    }
+
+    public Local(String nom, String categorie, String image, String live, String surv, String tel, String uP, String zone, GeoPoint localisation){
         this.nomLocal = nom;
         this.categorie = categorie;
         this.image = image;
@@ -26,6 +38,7 @@ public class Local implements Serializable {
         this.telephone = tel;
         this.utilisateurProp = uP;
         this.zone = zone;
+        this.localisation = localisation;
     }
 
 

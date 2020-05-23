@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 mainFragment = new MainFragment(this.user);
                 break;
             case R.id.itemMaps :
-                mainFragment = new MapFragment();
+                mainFragment = new MapFragment(this.user);
                 break;
             case R.id.itemAlert :
                 mainFragment = new AlertFragment(this.user);
