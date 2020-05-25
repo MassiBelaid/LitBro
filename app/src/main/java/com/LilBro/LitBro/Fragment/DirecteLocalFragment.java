@@ -174,7 +174,7 @@ public class DirecteLocalFragment extends Fragment {
         }).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                createNotificationChanel();
+                /*createNotificationChanel();
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),CHANNEL_ID);
                 builder.setSmallIcon(R.mipmap.logo_lil_bro);
                 builder.setContentTitle("ALERTE !");
@@ -182,7 +182,7 @@ public class DirecteLocalFragment extends Fragment {
                 builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
                 NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
-                notificationManagerCompat.notify(1997,builder.build());
+                notificationManagerCompat.notify(1997,builder.build());*/
                 //add the intent to the alerte
             }
         });
