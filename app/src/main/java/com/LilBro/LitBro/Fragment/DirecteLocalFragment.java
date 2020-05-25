@@ -1,9 +1,14 @@
 package com.LilBro.LitBro.Fragment;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +36,7 @@ import java.util.Map;
 public class DirecteLocalFragment extends Fragment {
 
     public static final String COLLECTION_NAME = "local";
+    private static final String CHANNEL_ID = "chn";
 
     private String nomLocal;
     Button btAlerter;
@@ -163,8 +169,34 @@ public class DirecteLocalFragment extends Fragment {
                 pb.setVisibility(View.INVISIBLE);
                 btAlerter.setVisibility(View.VISIBLE);
                 btAlerter.setClickable(false);
-                Toast.makeText(getActivity(),"Vous ne spammerez pas", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),getResources().getString(R.string.AlerteRéussie), Toast.LENGTH_LONG).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                createNotificationChanel();
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),CHANNEL_ID);
+                builder.setSmallIcon(R.mipmap.logo_lil_bro);
+                builder.setContentTitle("ALERTE !");
+                builder.setContentText("une alerte dans le local : "+nomLocal);
+                builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
+                notificationManagerCompat.notify(1997,builder.build());
+                //add the intent to the alerte
             }
         });
+    }
+
+    private void createNotificationChanel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = getString(R.string.notificationName);
+            String descritpion = getString(R.string.notificationDescription);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(descritpion);
+            NotificationManager notmanager = getActivity().getSystemService(NotificationManager.class);
+            notmanager.createNotificationChannel(channel);
+        }
     }
 }

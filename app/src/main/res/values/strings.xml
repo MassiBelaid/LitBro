@@ -65,8 +65,11 @@
     <string name="labelLocal">Local :</string>
     <string name="noImg">Pas d\'image disponible</string>
     <string name="noAlert">Pas d\'alerte pour ce local</string>
+    <string name="AlerteRéussie">Alerte envoyée</string>
 
     <string name="mapKey" translatable="false">AIzaSyCAZoqBh33bmL-07F1Io4WRwbU9ye1x6Z4</string>
+    <string name="notificationName" translatable="false">notifLilBro</string>
+    <string name="notificationDescription" translatable="false">LilBroNotif</string>
 
 
 </resources>
