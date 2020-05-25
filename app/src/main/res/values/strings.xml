@@ -70,6 +70,7 @@
     <string name="mapKey" translatable="false">AIzaSyCAZoqBh33bmL-07F1Io4WRwbU9ye1x6Z4</string>
     <string name="notificationName" translatable="false">notifLilBro</string>
     <string name="notificationDescription" translatable="false">LilBroNotif</string>
+    <string name="channelID" translatable="false">Channel01</string>
 
 
 </resources>

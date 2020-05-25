@@ -19,15 +19,20 @@ public class FirebaseMassagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        createNotificationChanel();
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this,CHANNEL_ID);
+        //createNotificationChanel();
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this,getString(R.string.channelID));
                 builder.setSmallIcon(R.mipmap.logo_lil_bro);
                 builder.setContentTitle("ALERTE !");
                 builder.setContentText("une alerte dans le local : ");
                 builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-                notificationManagerCompat.notify(1997,builder.build());
+                int mNotificationID = (int) System.currentTimeMillis();
+
+                NotificationManager mNotifManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                mNotifManager.notify(mNotificationID, builder.build());
+
+                /*NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+                notificationManagerCompat.notify(1997,builder.build());*/
     }
 
 

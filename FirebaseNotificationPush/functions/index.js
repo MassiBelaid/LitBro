@@ -9,10 +9,13 @@ exports.sendNotification = functions.firestore.document('alertes/{id}').onCreate
     const alerteID = context.params.id;
     console.log("Nom local : " + alerteID);
 
+    var topic = 'alertes'
+
     var message = {
-        alerte: {
-            id: alerteID
-        }
+        data: {
+            alertes: alerteID
+        },
+        topic: topic
     };
 
     return admin.messaging().send(message)
