@@ -3,6 +3,7 @@ package com.LilBro.LitBro.Services;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -18,8 +19,9 @@ public class FirebaseMassagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
+        //super.onMessageReceived(remoteMessage);
         //createNotificationChanel();
+        Toast.makeText(this,"CA AMARCHE ALERTE",Toast.LENGTH_LONG).show();
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this,getString(R.string.channelID));
                 builder.setSmallIcon(R.mipmap.logo_lil_bro);
                 builder.setContentTitle("ALERTE !");
@@ -35,6 +37,10 @@ public class FirebaseMassagingService extends FirebaseMessagingService {
                 notificationManagerCompat.notify(1997,builder.build());*/
     }
 
+    @Override
+    public void onDeletedMessages() {
+        super.onDeletedMessages();
+    }
 
     private void createNotificationChanel(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

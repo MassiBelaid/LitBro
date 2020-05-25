@@ -1,10 +1,12 @@
 package com.LilBro.LitBro.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.LilBro.LitBro.Fragment.AlertFragment;
 import com.LilBro.LitBro.Fragment.MainFragment;
@@ -13,7 +15,10 @@ import com.LilBro.LitBro.Fragment.ModifierLoginFragment;
 import com.LilBro.LitBro.Fragment.ParametreFragment;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("alertes").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this,"win",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this,"fail",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation);
