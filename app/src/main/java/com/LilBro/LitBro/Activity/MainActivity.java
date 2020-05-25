@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.LilBro.LitBro.Fragment.AlertFragment;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this,"win",Toast.LENGTH_LONG).show();
+                    Log.d("notif","CA MARCHE");
                 } else {
                     Toast.makeText(MainActivity.this,"fail",Toast.LENGTH_LONG).show();
                 }
