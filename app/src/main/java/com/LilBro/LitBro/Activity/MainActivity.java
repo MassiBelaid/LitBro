@@ -14,6 +14,7 @@ import com.LilBro.LitBro.Fragment.MainFragment;
 import com.LilBro.LitBro.Fragment.MapFragment;
 import com.LilBro.LitBro.Fragment.ModifierLoginFragment;
 import com.LilBro.LitBro.Fragment.ParametreFragment;
+import com.LilBro.LitBro.Fragment.VideoAlerteFragment;
 import com.LilBro.LitBro.Models.Utilisateur;
 import com.LilBro.LitBro.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,15 +46,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         bottomNavigationView = findViewById(R.id.activity_main_bottom_navigation);
 
         Intent i = getIntent();
         user = (Utilisateur) i.getSerializableExtra("utilisateur");
         description = "User : "+user.getLogin()+" Type de compte "+user.getUtilisateurType();
-        if(user.getModifLogin()){
-            configureAndShowMainFragment(new MainFragment(this.user));
-        }else{
-            configureAndShowMainFragment(new ModifierLoginFragment(user));
+        Bundle extra = i.getExtras();
+        if(extra.containsKey("start")){
+            String URIvid = i.getStringExtra("alertURI");
+            configureAndShowMainFragment(new VideoAlerteFragment(URIvid));
+        }else {
+            if(user.getModifLogin()){
+                configureAndShowMainFragment(new MainFragment(this.user));
+            }else{
+                configureAndShowMainFragment(new ModifierLoginFragment(user));
+            }
         }
         configureBottomView();
     }
